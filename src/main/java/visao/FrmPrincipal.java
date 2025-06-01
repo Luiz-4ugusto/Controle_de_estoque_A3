@@ -40,6 +40,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestão de estoque ");
+        setPreferredSize(new java.awt.Dimension(982, 670));
 
         jMenu3.setText("File");
 
