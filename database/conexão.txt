@@ -1,0 +1,7 @@
+nome da base: db_controledeestoque
+
+            String server = "localhost";
+            String database = "db_controledeestoque";
+            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
+            String user = "root";
+            String password = "070600@";
