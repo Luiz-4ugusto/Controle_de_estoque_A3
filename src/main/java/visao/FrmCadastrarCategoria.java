@@ -10,15 +10,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luiz
  */
-public class FrmCadastrarCat extends javax.swing.JFrame {
+public class FrmCadastrarCategoria extends javax.swing.JFrame {
 
     private CadastrarCategoria objetoCadastrar;
 
-    public FrmCadastrarCat() {
+    public FrmCadastrarCategoria() {
         initComponents();
         this.objetoCadastrar = new CadastrarCategoria();
         setLocationRelativeTo(null);
-
 
     }
 
@@ -30,7 +29,10 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         for (CadastrarCategoria categoria : dao.getLista()) {
             modelo.addRow(new Object[]{
                 categoria.getId(),
-                categoria.getNome()
+                categoria.getNome(),
+                categoria.getEmbalagem(),
+                categoria.getTamanho()
+
             });
         }
     }
@@ -55,11 +57,13 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         JTableCategoria = new javax.swing.JTable();
         JButtonSair = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        JButtonListar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Categoria");
-        setPreferredSize(new java.awt.Dimension(982, 670));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -99,11 +103,11 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
 
         JTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nome Categoria"
+                "Código", "Nome Categoria", "Embalagem", "Tamanho"
             }
         ));
         JTableCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,12 +127,13 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Cadastrar Categoria");
 
-        JButtonListar.setText("Listar");
-        JButtonListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButtonListarActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lata", "Vidro", "Plástico" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeno", "Médio", "Grande" }));
+
+        jLabel4.setText("Embalagem");
+
+        jLabel5.setText("Tamanho");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,28 +144,30 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(JButtonCadastrar)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(JButtonListar)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(JButtonEditar)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(JButtonExcluir))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JTextID)
-                                    .addComponent(JTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))))
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JButtonSair)))
-                .addContainerGap())
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JTextID, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(JTextNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(107, 107, 107)))
+                    .addComponent(JButtonSair)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(JButtonCadastrar)
+                            .addGap(93, 93, 93)
+                            .addComponent(JButtonEditar)
+                            .addGap(103, 103, 103)
+                            .addComponent(JButtonExcluir))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,12 +187,19 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JButtonCadastrar)
                             .addComponent(JButtonEditar)
-                            .addComponent(JButtonExcluir)
-                            .addComponent(JButtonListar))
+                            .addComponent(JButtonExcluir))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JButtonSair)))
                 .addContainerGap())
@@ -197,6 +211,9 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
     private void JButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarActionPerformed
         try {
             String nome = JTextNome.getText().trim();
+            String embalagem = jComboBox1.getSelectedItem().toString().trim();
+            String tamanho = jComboBox2.getSelectedItem().toString().trim();
+
             int id;
 
             if (nome.length() < 2) {
@@ -232,11 +249,15 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
 
             this.objetoCadastrar.setId(id);
             this.objetoCadastrar.setNome(nome);
+            this.objetoCadastrar.setEmbalagem(embalagem);
+            this.objetoCadastrar.setTamanho(tamanho);
             CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
             if (dao.inserirCategoria(this.objetoCadastrar)) {
                 JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
                 JTextID.setText("");
                 JTextNome.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
                 carregaTabela();
                 this.objetoCadastrar = new CadastrarCategoria();
             }
@@ -252,6 +273,8 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
 
             int id = 0;
             String nome = "";
+            String embalagem = jComboBox1.getSelectedItem().toString().trim();
+            String tamanho = jComboBox2.getSelectedItem().toString().trim();
 
             if (this.JTextNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
@@ -265,12 +288,16 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
                 id = Integer.parseInt(this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 0).toString());
             }
 
-            CadastrarCategoria categoriaAtualizada = new CadastrarCategoria(id, nome);
-
+            CadastrarCategoria categoriaAtualizada = new CadastrarCategoria(id, nome, embalagem, tamanho);
             CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
             if (dao.atualizarCategoria(categoriaAtualizada)) {
                 this.JTextID.setText("");
                 this.JTextNome.setText("");
+
+                // Reset JComboBoxes to their default (e.g., first item or null)
+                this.jComboBox1.setSelectedIndex(0);
+                this.jComboBox2.setSelectedIndex(0);
+
                 JOptionPane.showMessageDialog(rootPane, "Categoria Alterada com Sucesso!");
             }
 
@@ -281,9 +308,8 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um ID válido.");
         } finally {
-
             carregaTabela();
-        }        
+        }
     }//GEN-LAST:event_JButtonEditarActionPerformed
 
     private void JButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonSairActionPerformed
@@ -294,15 +320,18 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         if (this.JTableCategoria.getSelectedRow() != -1) {
             String id = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 0).toString();
             String nome = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 1).toString();
+            String embalagem = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 2).toString();
+            String tamanho = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 3).toString();
             this.JTextID.setText(id);
             this.JTextNome.setText(nome);
+            this.jComboBox1.setSelectedItem(embalagem);
+            this.jComboBox2.setSelectedItem(tamanho);
         }
 
     }//GEN-LAST:event_JTableCategoriaMouseClicked
 
     private void JButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonExcluirActionPerformed
         try {
-
             int id = 0;
             if (this.JTableCategoria.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro selecione uma categoria para remover");
@@ -322,15 +351,18 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
             if (respostaUsuario == JOptionPane.YES_OPTION) {
                 CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
                 if (dao.removerCategoria(id)) {
-                    // Limpa os campos após remoção
                     this.JTextID.setText("");
                     this.JTextNome.setText("");
+                    this.jComboBox1.setSelectedIndex(0);
+                    this.jComboBox2.setSelectedIndex(0);
+
                     JOptionPane.showMessageDialog(
                             rootPane,
                             "Categoria removida com sucesso!"
                     );
                 }
             }
+
             CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
             System.out.println(dao.getLista().toString());
 
@@ -342,10 +374,6 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
             carregaTabela();
         }
     }//GEN-LAST:event_JButtonExcluirActionPerformed
-
-    private void JButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonListarActionPerformed
-        carregaTabela();
-    }//GEN-LAST:event_JButtonListarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         carregaTabela();
@@ -373,21 +401,25 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarCat.class
+            java.util.logging.Logger.getLogger(FrmCadastrarCategoria.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarCat.class
+            java.util.logging.Logger.getLogger(FrmCadastrarCategoria.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarCat.class
+            java.util.logging.Logger.getLogger(FrmCadastrarCategoria.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarCat.class
+            java.util.logging.Logger.getLogger(FrmCadastrarCategoria.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -396,7 +428,7 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCadastrarCat().setVisible(true);
+                new FrmCadastrarCategoria().setVisible(true);
             }
         });
     }
@@ -405,14 +437,17 @@ public class FrmCadastrarCat extends javax.swing.JFrame {
     private javax.swing.JButton JButtonCadastrar;
     private javax.swing.JButton JButtonEditar;
     private javax.swing.JButton JButtonExcluir;
-    private javax.swing.JButton JButtonListar;
     private javax.swing.JButton JButtonSair;
     private javax.swing.JTable JTableCategoria;
     private javax.swing.JTextField JTextID;
     private javax.swing.JTextField JTextNome;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

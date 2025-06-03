@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
 import dao.CadastrarCategoriaDao;
@@ -31,8 +28,9 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
     private void carregarCategoriasNoCombo() {
         jComboCategoria.removeAllItems();
         CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
-        for (String nomeCategoria : dao.getNomesCategorias()) {
-            jComboCategoria.addItem(nomeCategoria);
+        for (CadastrarCategoria cat : dao.getLista()) {
+            String categoriaFormatada = cat.getNome() + " - " + cat.getEmbalagem() + " - " + cat.getTamanho();
+            jComboCategoria.addItem(categoriaFormatada);
         }
     }
 //função para a tabela ser atualizada
@@ -43,6 +41,10 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
 
         CadastrarProdutoDao dao = new CadastrarProdutoDao();
         for (CadastrarProduto produto : dao.getListaProdutos()) {
+            String categoriaFormatada = produto.getCategoria().getNome()
+                    + " - " + produto.getCategoria().getEmbalagem()
+                    + " - " + produto.getCategoria().getTamanho();
+
             modelo.addRow(new Object[]{
                 produto.getId(),
                 produto.getNome(),
@@ -51,7 +53,7 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
                 produto.getMin(),
                 produto.getMax(),
                 produto.getUnidade(),
-                produto.getCategoria().getNome()
+                categoriaFormatada
             });
         }
     }
@@ -358,12 +360,18 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
                 throw new Mensagem("Selecione categoria.");
             }
 
-            String nomeCategoria = jComboCategoria.getSelectedItem().toString();
-            CadastrarCategoria categoriaSelecionada = null;
+            String categoriaCompleta = jComboCategoria.getSelectedItem().toString();
+            String[] partes = categoriaCompleta.split(" - ");
+            if (partes.length != 3) {
+                throw new Mensagem("Formato de categoria inválido");
+            }
 
             CadastrarCategoriaDao categoriaDao = new CadastrarCategoriaDao();
+            CadastrarCategoria categoriaSelecionada = null;
             for (CadastrarCategoria cat : categoriaDao.getLista()) {
-                if (cat.getNome().equals(nomeCategoria)) {
+                if (cat.getNome().equals(partes[0].trim())
+                        && cat.getEmbalagem().equals(partes[1].trim())
+                        && cat.getTamanho().equals(partes[2].trim())) {
                     categoriaSelecionada = cat;
                     break;
                 }
@@ -450,13 +458,18 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
             if (jComboCategoria.getSelectedItem() == null) {
                 throw new Mensagem("Selecione uma categoria.");
             }
+            String categoriaCompleta = jComboCategoria.getSelectedItem().toString();
+            String[] partes = categoriaCompleta.split(" - ");
+            if (partes.length != 3) {
+                throw new Mensagem("Formato de categoria inválido");
+            }
 
-            String nomeCategoria = jComboCategoria.getSelectedItem().toString();
             CadastrarCategoria categoriaSelecionada = null;
-
             CadastrarCategoriaDao categoriaDao = new CadastrarCategoriaDao();
             for (CadastrarCategoria cat : categoriaDao.getLista()) {
-                if (cat.getNome().equals(nomeCategoria)) {
+                if (cat.getNome().equals(partes[0].trim())
+                        && cat.getEmbalagem().equals(partes[1].trim())
+                        && cat.getTamanho().equals(partes[2].trim())) {
                     categoriaSelecionada = cat;
                     break;
                 }
@@ -494,7 +507,6 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
 
     private void JTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableProdutosMouseClicked
         //usuario pode clicar na tabela e puxar os valores que quiser, igual exemplo do professor
-
         if (this.JTableProdutos.getSelectedRow() != -1) {
             String id = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 0).toString();
             String nome = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 1).toString();
@@ -503,7 +515,8 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
             String min = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 4).toString();
             String max = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 5).toString();
             String unidade = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 6).toString();
-            String categoria = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 7).toString();
+            String categoriaCompleta = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 7).toString();
+
             this.jTextId.setText(id);
             this.jTextNome.setText(nome);
             this.jTextPreco.setText(preco);
@@ -511,8 +524,8 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
             this.jTextQuantidade_min.setText(min);
             this.jTextQuantidade_max.setText(max);
             this.jComboUnidade.setSelectedItem(unidade);
-            this.jComboCategoria.setSelectedItem(categoria);
-        }        // TODO add your handling code here:
+            this.jComboCategoria.setSelectedItem(categoriaCompleta);
+        }
     }//GEN-LAST:event_JTableProdutosMouseClicked
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
@@ -594,16 +607,24 @@ public class FrmCadastrarProd extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarProd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCadastrarProd.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarProd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCadastrarProd.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarProd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCadastrarProd.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastrarProd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCadastrarProd.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

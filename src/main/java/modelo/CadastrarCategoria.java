@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
 /**
@@ -9,21 +6,23 @@ package modelo;
  * @author luiz
  */
 public class CadastrarCategoria {
-
     private int id;
     private String nome;
-
+    private String embalagem;
+    private String tamanho;
 
     public CadastrarCategoria() {
-        this(0, "");
+        this(0, "", "", "");
     }
 
-    public CadastrarCategoria(int id, String nome) {
+    public CadastrarCategoria(int id, String nome, String embalagem, String tamanho) {
         this.id = id;
         this.nome = nome;
+        this.embalagem = embalagem;
+        this.tamanho = tamanho;
     }
 
-    // Getters e Setters
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -40,9 +39,24 @@ public class CadastrarCategoria {
         this.nome = nome;
     }
 
+    public String getEmbalagem() {
+        return embalagem;
+    }
+
+    public void setEmbalagem(String embalagem) {
+        this.embalagem = embalagem;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
 
     @Override
     public String toString() {
-        return "id=" + id + ", nome=" + nome;
+        return nome + " - " + embalagem + " - " + tamanho;
     }
 }
