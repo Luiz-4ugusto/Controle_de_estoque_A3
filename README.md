@@ -54,6 +54,10 @@ A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a inte
 ## Banco de Dados
 
 A pasta `database` contém os scripts de conexão e criação das tabelas utilizadas neste projeto.  Execute o script em seu servidor SQL local para criar a estrutura do banco de dados necessária ao funcionamento da aplicação.
+nome da base: db_controledeestoque
+usuário e senha do bd:
+            String user = "root";
+            String password = "070600@";
 
 
 ## Referências
