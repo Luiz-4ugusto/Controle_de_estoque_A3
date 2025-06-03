@@ -41,7 +41,7 @@ A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a inte
 - 
 - 
 
-## Documentação
+## Ferramentas
 
 | Ferramentas          | Finalidade                                     |
 | ------------------------------ | ---------------------------------------------- |
