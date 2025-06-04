@@ -22,46 +22,46 @@ A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a inte
 | Luiz Augusto Pereira       | Luiz-4ugusto | 10725115943     |
 
 ## Requisitos Funcionais (RF)
--RF01. O sistema deve permitir que o usuário cadastre categorias de produtos, informando: id, nome da categoria, embalagem e tamanho.
+RF01. O sistema deve permitir que o usuário cadastre categorias de produtos, informando: id, nome da categoria, embalagem e tamanho.
 
--RF02. O sistema deve permitir que o usuário edite e exclua categorias previamente cadastradas.
+RF02. O sistema deve permitir que o usuário edite e exclua categorias previamente cadastradas.
 
--RF03. O sistema deve permitir que o usuário cadastre novos produtos, informando: id, nome do produto, quantidade mínima e máxima permitida em estoque, quantidade atual em estoque e categoria.
+RF03. O sistema deve permitir que o usuário cadastre novos produtos, informando: id, nome do produto, quantidade mínima e máxima permitida em estoque, quantidade atual em estoque e categoria.
 
--RF04. O sistema deve permitir que o usuário edite e exclua produtos previamente cadastrados.
+RF04. O sistema deve permitir que o usuário edite e exclua produtos previamente cadastrados.
 
--RF05. O sistema deve permitir que o usuário adicione e remova produtos ao estoque atual.
+RF05. O sistema deve permitir que o usuário adicione e remova produtos ao estoque atual.
 
--RF06. O sistema deve permitir que o usuário gere os seguintes relatórios:
+RF06. O sistema deve permitir que o usuário gere os seguintes relatórios:
 
--Lista de preços dos produtos
+ - Lista de preços dos produtos
 
--Balanço fiscal
+ - Balanço fiscal
 
--Balanço financeiro
+ - Balanço financeiro
 
--Produtos abaixo da quantidade mínima de estoque
+ - Produtos abaixo da quantidade mínima de estoque
 
--Produtos acima da quantidade máxima de estoque
+ - Produtos acima da quantidade máxima de estoque
 
--Quantidade de produtos agrupados por categoria
+ - Quantidade de produtos agrupados por categoria
 
 
--RF07. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja abaixo da quantidade mínima permitida.
+RF07. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja abaixo da quantidade mínima permitida.
 
--RF08. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja acima da quantidade máxima permitida.
+RF08. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja acima da quantidade máxima permitida.
 
 ## Requisitos Não Funcionais (RNF)
 
--RNF01. O sistema deve estar disponível para uso 24 horas por dia, 7 dias por semana (24/7), garantindo funcionamento contínuo.
+RNF01. O sistema deve estar disponível para uso 24 horas por dia, 7 dias por semana (24/7), garantindo funcionamento contínuo.
 
--RNF02. O sistema deve possuir uma interface intuitiva e de fácil utilização, facilitando o uso por usuários com diferentes níveis de experiência.
+RNF02. O sistema deve possuir uma interface intuitiva e de fácil utilização, facilitando o uso por usuários com diferentes níveis de experiência.
 
--RNF03. O sistema deve responder aos comandos de forma rápida e eficaz, garantindo fluidez na navegação e uso das funcionalidades.
+RNF03. O sistema deve responder aos comandos de forma rápida e eficaz, garantindo fluidez na navegação e uso das funcionalidades.
 
--RNF04. O sistema deve garantir a integridade dos dados no banco, evitando perda ou corrupção de informações durante operações de leitura, escrita ou atualização.
+RNF04. O sistema deve garantir a integridade dos dados no banco, evitando perda ou corrupção de informações durante operações de leitura, escrita ou atualização.
 
--RNF05. O sistema deve validar os dados inseridos pelo usuário e, caso algum valor inválido seja informado, exibir uma mensagem de erro clara explicando o motivo do erro
+RNF05. O sistema deve validar os dados inseridos pelo usuário e, caso algum valor inválido seja informado, exibir uma mensagem de erro clara explicando o motivo do erro
 
 ## Ferramentas
 
