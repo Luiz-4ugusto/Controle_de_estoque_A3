@@ -32,24 +32,19 @@ RF04. O sistema deve permitir que o usuário edite e exclua produtos previamente
 
 RF05. O sistema deve permitir que o usuário adicione e remova produtos ao estoque atual.
 
-RF06. O sistema deve permitir que o usuário gere os seguintes relatórios:
+RF06. O sistema deve permitir que o usuário gere o seguinte relatório para lista de preços dos produtos
 
- - Lista de preços dos produtos
+RF07. O sistema deve permitir que o usuário gere o seguinte relatório para o balanço fiscal
 
- - Balanço fiscal
+RF08. O sistema deve permitir que o usuário gere o seguinte relatório para produtos abaixo da quantidade mínima de estoque
 
- - Balanço financeiro
+RF09. O sistema deve permitir que o usuário gere o seguinte relatório para produtos acima da quantidade máxima de estoque
 
- - Produtos abaixo da quantidade mínima de estoque
+RF10. O sistema deve permitir que o usuário gere o seguinte relatório para quantidade de produtos agrupados por categoria
 
- - Produtos acima da quantidade máxima de estoque
+RF11. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja abaixo da quantidade mínima permitida.
 
- - Quantidade de produtos agrupados por categoria
-
-
-RF07. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja abaixo da quantidade mínima permitida.
-
-RF08. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja acima da quantidade máxima permitida.
+RF12. O sistema deve disponibilizar uma janela específica que exiba todos os produtos cuja quantidade em estoque esteja acima da quantidade máxima permitida.
 
 ## Requisitos Não Funcionais (RNF)
 
