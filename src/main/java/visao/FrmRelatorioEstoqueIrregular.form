@@ -28,15 +28,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" min="-2" pref="651" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="651" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="651" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="0" min="-2" pref="651" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="JButtonCarregaTabelaEstoqueMaximo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="JButtonCarregaTabelaEstoqueMinimo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -47,15 +60,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="297" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="JButtonCarregaTabelaEstoqueMinimo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="296" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JButtonCarregaTabelaEstoqueMaximo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,7 +89,7 @@
         <Component class="javax.swing.JTable" name="JTableRelatorioEstoqueMinimo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="C&#xf3;d. Produto" type="java.lang.Object"/>
                 <Column editable="true" title="Produto" type="java.lang.Object"/>
                 <Column editable="true" title="Estoque atual" type="java.lang.Object"/>
@@ -127,7 +145,7 @@
         <Component class="javax.swing.JTable" name="JTableRelatorioEstoqueMaximo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="C&#xf3;d. Produto" type="java.lang.Object"/>
                 <Column editable="true" title="Produto" type="java.lang.Object"/>
                 <Column editable="true" title="Estoque atual" type="java.lang.Object"/>
@@ -180,6 +198,22 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Produtos abaixo ou iguais ao estoque m&#xed;nimo permitido"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="JButtonCarregaTabelaEstoqueMaximo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gerar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonCarregaTabelaEstoqueMaximoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JButtonCarregaTabelaEstoqueMinimo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gerar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonCarregaTabelaEstoqueMinimoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -23,23 +23,6 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
         this.JTableProdutos = jTableProdutos;
     }
 
-    public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
-        modelo.setNumRows(0);
-
-        CadastrarProdutoDao dao = new CadastrarProdutoDao();
-        for (CadastrarProduto produto : dao.getListaProdutos()) {
-            modelo.addRow(new Object[]{
-                produto.getNome(),
-                produto.getPreco(),
-                produto.getValorTotal(),
-                produto.getQuantidade(),
-                produto.getUnidade(),
-                produto.getCategoria().getNome()
-            });
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,6 +30,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableProdutos = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatório Preços");
@@ -76,6 +60,13 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Gerar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +76,8 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -95,7 +87,9 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -107,8 +101,24 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        carregaTabela();
     }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
+        modelo.setNumRows(0);
+
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        for (CadastrarProduto produto : dao.getListaProdutos()) {
+            modelo.addRow(new Object[]{
+                produto.getNome(),
+                produto.getPreco(),
+                produto.getValorTotal(),
+                produto.getQuantidade(),
+                produto.getUnidade(),
+                produto.getCategoria().getNome()
+            });
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +158,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableProdutos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

@@ -158,7 +158,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        FrmConsultarFinancas objeto = new FrmConsultarFinancas();
+        FrmRelatorioPrecos objeto = new FrmRelatorioPrecos();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
