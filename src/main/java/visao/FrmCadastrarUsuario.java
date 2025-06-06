@@ -19,7 +19,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         JTextSenha = new javax.swing.JTextField();
         JTextLogin = new javax.swing.JTextField();
         jLabelEsqueci = new javax.swing.JLabel();
-        JButtonCadastrar = new javax.swing.JButton();
+        JButtonCadastrarUsuario = new javax.swing.JButton();
         JButtonVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -39,10 +39,10 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
 
         jLabelEsqueci.setAutoscrolls(true);
 
-        JButtonCadastrar.setText("Cadastrar");
-        JButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        JButtonCadastrarUsuario.setText("Cadastrar");
+        JButtonCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButtonCadastrarActionPerformed(evt);
+                JButtonCadastrarUsuarioActionPerformed(evt);
             }
         });
 
@@ -84,7 +84,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel4)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(JButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JButtonCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                     .addComponent(JButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(JTextEmail))
@@ -110,7 +110,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
                 .addComponent(JTextSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JButtonCadastrar)
+                    .addComponent(JButtonCadastrarUsuario)
                     .addComponent(JButtonVoltar))
                 .addGap(13, 13, 13)
                 .addComponent(jLabelEsqueci)
@@ -124,7 +124,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JTextSenhaActionPerformed
 
-    private void JButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarActionPerformed
+    private void JButtonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarUsuarioActionPerformed
         try {
             String username = JTextLogin.getText().trim();
             String email = JTextEmail.getText().trim();
@@ -167,7 +167,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro inesperado: " + e.getMessage());
             e.printStackTrace();
         }
-    }//GEN-LAST:event_JButtonCadastrarActionPerformed
+    }//GEN-LAST:event_JButtonCadastrarUsuarioActionPerformed
 
     private void JButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonVoltarActionPerformed
         this.dispose(); // Fecha a tela de cadastro
@@ -188,7 +188,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JButtonCadastrar;
+    private javax.swing.JButton JButtonCadastrarUsuario;
     private javax.swing.JButton JButtonVoltar;
     private javax.swing.JTextField JTextEmail;
     private javax.swing.JTextField JTextLogin;

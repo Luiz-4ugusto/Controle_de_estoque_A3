@@ -40,7 +40,7 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="JButtonCadastrar" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="JButtonCadastrarUsuario" min="-2" pref="95" max="-2" attributes="0"/>
                                   <EmptySpace pref="116" max="32767" attributes="0"/>
                                   <Component id="JButtonVoltar" min="-2" pref="96" max="-2" attributes="0"/>
                               </Group>
@@ -73,7 +73,7 @@
               <Component id="JTextSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JButtonCadastrarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -101,12 +101,12 @@
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="JButtonCadastrar">
+    <Component class="javax.swing.JButton" name="JButtonCadastrarUsuario">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonCadastrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonCadastrarUsuarioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JButtonVoltar">
