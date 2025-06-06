@@ -1,153 +1,77 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.LoginUsuario;
+import modelo.LoginUsuario; // Importa a classe modelo LoginUsuario
 
 public class LoginDAO {
 
-    public Connection getConexao() {
-        Connection connection = null;
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
+    private final ConexaoDAO conexaoDAO; // Instância de ConexaoDAO
 
-            String server = "localhost";
-            String database = "db_controledeestoque";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "070600@";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Status: Conectado ao banco de dados!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO ao banco de dados!");
-            }
-            return connection;
-        } catch (ClassNotFoundException e) {
-            System.out.println("O driver JDBC não foi encontrado: " + e.getMessage());
-            return null;
-        } catch (SQLException e) {
-            System.out.println("Não foi possível conectar ao banco de dados: " + e.getMessage());
-            return null;
-        }
+    public LoginDAO() {
+        this.conexaoDAO = new ConexaoDAO(); // Inicializa a ConexaoDAO
     }
 
+    /**
+     * Valida as credenciais de login de um usuário.
+     *
+     * @param username O nome de usuário a ser validado.
+     * @param senha A senha a ser validada.
+     * @return true se o login for válido, false caso contrário.
+     */
     public boolean validarLogin(String username, String senha) {
-        String sql = "SELECT * FROM tb_usuarios WHERE username = ? AND senha = ?";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        // Seleciona apenas o username, pois é o suficiente para verificar se a combinação existe.
+        String sql = "SELECT username FROM tb_usuarios WHERE username = ? AND senha = ?";
         boolean loginValido = false;
 
-        try {
-            conn = this.getConexao();
-            if (conn != null) {
-                stmt = conn.prepareStatement(sql);
-                stmt.setString(1, username);
-                stmt.setString(2, senha);
+        try (Connection conn = conexaoDAO.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-                rs = stmt.executeQuery();
+            stmt.setString(1, username);
+            stmt.setString(2, senha);
 
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Se rs.next() retornar true, significa que uma correspondência foi encontrada.
                 if (rs.next()) {
                     loginValido = true;
                 }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao validar login: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos: " + e.getMessage());
-            }
+            e.printStackTrace();
         }
         return loginValido;
     }
 
+    /**
+     * Busca um usuário pelo nome de usuário para fins de login. Retorna um
+     * objeto LoginUsuario contendo apenas o username e a senha se o usuário for
+     * encontrado.
+     *
+     * @param username O nome de usuário a ser buscado.
+     * @return Um objeto LoginUsuario (username e senha) se encontrado, ou null
+     * caso contrário.
+     */
     public LoginUsuario buscarUsername(String username) {
-        String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE username = ?";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        // Altera a query para selecionar apenas os campos que LoginUsuario pode armazenar
+        String sql = "SELECT username, senha FROM tb_usuarios WHERE username = ?";
         LoginUsuario usuario = null;
 
-        try {
-            conn = this.getConexao();
-            if (conn != null) {
-                stmt = conn.prepareStatement(sql);
-                stmt.setString(1, username);
-                rs = stmt.executeQuery();
+        try (Connection conn = conexaoDAO.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setString(1, username);
+
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    usuario = new LoginUsuario(rs.getString("senha"), rs.getString("username"));
+                    // Instancia LoginUsuario com username e senha
+                    usuario = new LoginUsuario(rs.getString("username"), rs.getString("senha"));
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar usuário: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos: " + e.getMessage());
-            }
+            System.err.println("Erro ao buscar usuário por username para login: " + e.getMessage());
+            e.printStackTrace();
         }
         return usuario;
-    }
-
-    public boolean inserirUsername(LoginUsuario usuario) {
-        String sql = "INSERT INTO tb_usuarios (username, senha) VALUES (?, ?)";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        boolean inserido = false;
-
-        try {
-            conn = this.getConexao();
-            if (conn != null) {
-                stmt = conn.prepareStatement(sql);
-                stmt.setString(1, usuario.getUsername());
-                stmt.setString(2, usuario.getSenha());
-
-                int linhasAfetadas = stmt.executeUpdate();
-                if (linhasAfetadas > 0) {
-                    inserido = true;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao inserir usuário: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos: " + e.getMessage());
-            }
-        }
-        return inserido;
     }
 }

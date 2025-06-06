@@ -1,9 +1,8 @@
 package dao;
 
-import modelo.CadastrarUsuario;
+import modelo.CadastrarUsuario; // Importa a classe modelo CadastrarUsuario
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,195 +11,149 @@ import java.util.ArrayList;
 
 public class CadastrarUsuarioDAO {
 
-    public Connection getConexao() {
-        Connection connection = null;
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
+    private final ConexaoDAO conexaoDAO;
 
-            String server = "localhost";
-            String database = "db_controledeestoque";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "070600@";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Status: Conectado ao banco de gerenciamento de estoque para cadastro!");
-            } else {
-                System.out.println("Status: Conexão NÃO ESTABELECIDA ao banco de gerenciamento de estoque para cadastro!");
-            }
-            return connection;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Erro: O driver JDBC não foi encontrado.");
-            e.printStackTrace();
-            return null;
-        } catch (SQLException e) {
-            System.out.println("Erro: Não foi possível conectar ao banco de dados.");
-            System.out.println("Detalhes do erro: " + e.getMessage());
-            e.printStackTrace();
-            return null;
-        }
+    /**
+     * Construtor padrão. Inicializa a conexão com o banco de dados.
+     */
+    public CadastrarUsuarioDAO() {
+        this.conexaoDAO = new ConexaoDAO();
     }
 
-    public boolean inserirUsuario(CadastrarUsuario usuario) {
-        String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
-        Connection con = null;
-        PreparedStatement pst = null;
-        try {
-            con = this.getConexao();
-            if (con == null) {
-                System.err.println("Conexão nula ao tentar inserir usuário.");
-                return false;
+    /**
+     * Retorna uma lista com todos os usuários cadastrados.
+     *
+     * @return ArrayList de CadastrarUsuario.
+     */
+    public ArrayList<CadastrarUsuario> getLista() {
+        ArrayList<CadastrarUsuario> lista = new ArrayList<>();
+        // Query para selecionar todos os campos que o CadastrarUsuario possui
+        String sql = "SELECT id, username, email, senha FROM tb_usuarios ORDER BY id ASC";
+
+        try (Connection conn = conexaoDAO.getConexao(); Statement stmt = conn.createStatement(); ResultSet res = stmt.executeQuery(sql)) {
+
+            while (res.next()) {
+                // Mapeia os dados do ResultSet para um objeto CadastrarUsuario
+                int id = res.getInt("id");
+                String username = res.getString("username");
+                String email = res.getString("email");
+                String senha = res.getString("senha");
+
+                // Utiliza o construtor completo de CadastrarUsuario
+                CadastrarUsuario objeto = new CadastrarUsuario(id, username, email, senha);
+                lista.add(objeto);
             }
-            pst = con.prepareStatement(sql);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao obter lista de usuários: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return lista;
+    }
+
+    /**
+     * Insere um novo usuário no banco de dados.
+     *
+     * @param usuario Objeto CadastrarUsuario com os dados a serem inseridos.
+     * @return true se o usuário foi inserido com sucesso, false caso contrário.
+     */
+    public boolean inserirUsuario(CadastrarUsuario usuario) {
+        // A query está correta para inserir username, email e senha
+        String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
+
+        try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
+
             pst.setString(1, usuario.getNome());
             pst.setString(2, usuario.getEmail());
             pst.setString(3, usuario.getSenha());
-            pst.executeUpdate();
-            return true;
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0; // Retorna true se a inserção foi bem-sucedida
         } catch (SQLException e) {
             System.err.println("Erro ao inserir usuário: " + e.getMessage());
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (pst != null) {
-                    pst.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos após inserção: " + e.getMessage());
-            }
         }
     }
 
+    /**
+     * Busca um usuário no banco de dados pelo nome de usuário.
+     *
+     * @param username O nome de usuário a ser buscado.
+     * @return Um objeto CadastrarUsuario se encontrado, ou null caso contrário.
+     */
     public CadastrarUsuario buscarUsername(String username) {
-        String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE username = ?";
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+        // Query para selecionar todos os campos do usuário
+        String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE username = ?";
         CadastrarUsuario usuario = null;
-        try {
-            con = this.getConexao();
-            if (con == null) {
-                System.err.println("Conexão nula ao tentar buscar usuário.");
-                return null;
-            }
-            pst = con.prepareStatement(sql);
-            pst.setString(1, username);
-            rs = pst.executeQuery();
 
-            if (rs.next()) {
-                usuario = new CadastrarUsuario();
-                usuario.setId_cadastro(rs.getInt("id_cadastro"));
-                usuario.setNome(rs.getString("username"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setSenha(rs.getString("senha"));
+        try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, username);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    // Mapeia todos os campos para o objeto CadastrarUsuario
+                    int id = rs.getInt("id");
+                    String foundUsername = rs.getString("username");
+                    String email = rs.getString("email");
+                    String senha = rs.getString("senha");
+                    usuario = new CadastrarUsuario(id, foundUsername, email, senha);
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar usuário por username: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pst != null) {
-                    pst.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos após busca: " + e.getMessage());
-            }
         }
         return usuario;
     }
 
-    //Busca a lista de e-mails no banco para validar se já existe
+    /**
+     * Busca um usuário no banco de dados pelo email.
+     *
+     * @param email O email a ser buscado.
+     * @return Um objeto CadastrarUsuario se encontrado, ou null caso contrário.
+     */
     public CadastrarUsuario buscarEmail(String email) {
-        String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE email = ?";
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+        // Query para selecionar todos os campos do usuário
+        String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE email = ?";
         CadastrarUsuario usuario = null;
-        try {
-            con = this.getConexao();
-            if (con == null) {
-                System.err.println("Conexão nula ao tentar buscar usuário por email.");
-                return null;
-            }
-            pst = con.prepareStatement(sql);
-            pst.setString(1, email);
-            rs = pst.executeQuery();
 
-            if (rs.next()) {
-                usuario = new CadastrarUsuario();
-                usuario.setId_cadastro(rs.getInt("id_cadastro"));
-                usuario.setNome(rs.getString("username"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setSenha(rs.getString("senha"));
+        try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, email);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    // Mapeia todos os campos para o objeto CadastrarUsuario
+                    int id = rs.getInt("id");
+                    String username = rs.getString("username");
+                    String foundEmail = rs.getString("email");
+                    String senha = rs.getString("senha");
+                    usuario = new CadastrarUsuario(id, username, foundEmail, senha);
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar usuário por email: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pst != null) {
-                    pst.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos após busca por email: " + e.getMessage());
-            }
         }
         return usuario;
     }
 
+    /**
+     * Retorna uma lista de todos os nomes de usuário cadastrados.
+     *
+     * @return ArrayList de String contendo os usernames.
+     */
     public ArrayList<String> getAllUsernames() {
-        String sql = "SELECT username FROM tb_usuarios";
+        String sql = "SELECT username FROM tb_usuarios"; // Query específica para usernames
         ArrayList<String> usernames = new ArrayList<>();
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            con = this.getConexao();
-            if (con == null) {
-                System.err.println("Conexão nula ao tentar obter todos os usernames.");
-                return usernames;
-            }
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(sql);
+
+        try (Connection con = conexaoDAO.getConexao(); Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
                 usernames.add(rs.getString("username"));
             }
         } catch (SQLException e) {
             System.err.println("Erro ao obter todos os usernames: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar recursos após obter usernames: " + e.getMessage());
-            }
         }
         return usernames;
     }
