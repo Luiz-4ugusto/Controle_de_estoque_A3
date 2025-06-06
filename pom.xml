@@ -22,7 +22,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>24</maven.compiler.release>
-        <exec.mainClass>LoginCadastro.LoginCadastro</exec.mainClass>
+        <exec.mainClass>principal.Principal</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
