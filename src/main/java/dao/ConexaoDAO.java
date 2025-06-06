@@ -4,7 +4,6 @@
  * Banco de dados: db_controledeestoque
  * Usuário: root
  * Senha: 070600@
- *
  * @author luiz
  */
 package dao;
@@ -17,7 +16,7 @@ public class ConexaoDAO {
 
     private final String URL = "jdbc:mysql://localhost:3306/db_controledeestoque";
     private final String USER = "root";
-    private final String PASSWORD = "070600@";
+    private final String PASSWORD = "290906@";
 
     /**
      * Estabelece e retorna a conexão com o banco de dados.

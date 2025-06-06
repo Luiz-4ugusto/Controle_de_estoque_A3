@@ -1,7 +1,6 @@
 /**
  * Classe responsável pelas operações de acesso a dados (DAO)
  * da entidade Produto no banco de dados.
- *
  * @author luiz
  */
 package dao;
@@ -31,7 +30,7 @@ public class CadastrarProdutoDao {
         ArrayList<CadastrarProduto> lista = new ArrayList<>();
 
         String sql = "SELECT p.*, c.nome as categoria_nome, c.embalagem as categoria_embalagem, c.tamanho as categoria_tamanho "
-                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id";
+                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id  ORDER BY p.id ASC";
 
         try (Connection conn = conexaoDAO.getConexao(); Statement stmt = conn.createStatement(); ResultSet res = stmt.executeQuery(sql)) {
 
@@ -249,6 +248,13 @@ public class CadastrarProdutoDao {
         return produto;
     }
     
-  
+  public ResultSet contarProdutosPorCategoria() throws SQLException {
+        String sql = "SELECT c.nome AS categoria, COUNT(p.id) AS quantidade "
+                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id "
+                + "GROUP BY c.id, c.nome";
+
+        Connection conn = conexaoDAO.getConexao();
+        return conn.prepareStatement(sql).executeQuery();
+    }
     
 }

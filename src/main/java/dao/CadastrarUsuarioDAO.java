@@ -23,7 +23,7 @@ public class CadastrarUsuarioDAO {
             String url = "jdbc:mysql://" + server + ":3306/"
                     + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "070600@";
+            String password = "290906@";
 
             connection = DriverManager.getConnection(url, user, password);
 

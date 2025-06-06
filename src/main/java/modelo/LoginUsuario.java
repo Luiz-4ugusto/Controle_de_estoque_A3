@@ -1,5 +1,12 @@
 package modelo;
 
+/**
+ * Representa as credenciais de um usuário para autenticação no sistema.
+ * Esta classe encapsula o nome de usuário (username) e a senha,
+ * sendo utilizada para transportar os dados de login entre as camadas
+ * da aplicação
+ */
+
 public class LoginUsuario {
 
     private String username;

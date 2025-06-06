@@ -6,7 +6,6 @@ package modelo;
  * Contém id, nome, tipo de embalagem e tamanho.
  * 
  * Esta classe é utilizada para manipulação de dados de categorias no sistema de controle de estoque.
- * 
  * @author luiz
  */
 public class CadastrarCategoria {

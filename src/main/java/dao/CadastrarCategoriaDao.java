@@ -33,7 +33,7 @@ public class CadastrarCategoriaDao {
 
         try (Connection conn = conexaoDAO.getConexao();
              Statement stmt = conn.createStatement();
-             ResultSet res = stmt.executeQuery("SELECT * FROM tb_categoria")) {
+             ResultSet res = stmt.executeQuery("SELECT * FROM tb_categoria  ORDER BY id ASC")) {
 
             while (res.next()) {
                 int id = res.getInt("id");

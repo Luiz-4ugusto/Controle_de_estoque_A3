@@ -5,7 +5,6 @@ package modelo;
  * Classe que representa um produto no sistema de controle de estoque.
  * Contém informações como nome, preço, quantidade, limites mínimos e máximos,
  * unidade de medida e a categoria associada.
- * 
  * @author luiz
  */
 public class CadastrarProduto {
