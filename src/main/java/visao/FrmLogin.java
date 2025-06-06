@@ -2,8 +2,6 @@ package visao;
 
 import javax.swing.JOptionPane;
 import dao.LoginDAO;
-import javax.swing.JPasswordField;
-import modelo.ModeloLogin;
 
 public class FrmLogin extends javax.swing.JFrame {
 

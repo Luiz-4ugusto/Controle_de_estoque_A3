@@ -1,6 +1,7 @@
 package dao;
 
-import modelo.ModeloCadastrar;
+import modelo.CadastrarUsuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class CadastrarUsuarioDAO {
             String url = "jdbc:mysql://" + server + ":3306/"
                     + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "290906@";
+            String password = "070600@";
 
             connection = DriverManager.getConnection(url, user, password);
 
@@ -44,7 +45,7 @@ public class CadastrarUsuarioDAO {
         }
     }
 
-    public boolean inserirUsuario(ModeloCadastrar usuario) {
+    public boolean inserirUsuario(CadastrarUsuario usuario) {
         String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
         Connection con = null;
         PreparedStatement pst = null;
@@ -74,12 +75,12 @@ public class CadastrarUsuarioDAO {
         }
     }
 
-    public ModeloCadastrar buscarUsername(String username) {
+    public CadastrarUsuario buscarUsername(String username) {
         String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE username = ?";
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        ModeloCadastrar usuario = null;
+        CadastrarUsuario usuario = null;
         try {
             con = this.getConexao();
             if (con == null) {
@@ -91,7 +92,7 @@ public class CadastrarUsuarioDAO {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                usuario = new ModeloCadastrar();
+                usuario = new CadastrarUsuario();
                 usuario.setId_cadastro(rs.getInt("id_cadastro"));
                 usuario.setNome(rs.getString("username"));
                 usuario.setEmail(rs.getString("email"));
@@ -113,12 +114,12 @@ public class CadastrarUsuarioDAO {
     }
     
     //Busca a lista de e-mails no banco para validar se já existe
-    public ModeloCadastrar buscarEmail(String email) {
+    public CadastrarUsuario buscarEmail(String email) {
         String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE email = ?";
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        ModeloCadastrar usuario = null;
+        CadastrarUsuario usuario = null;
         try {
             con = this.getConexao();
             if (con == null) {
@@ -130,7 +131,7 @@ public class CadastrarUsuarioDAO {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                usuario = new ModeloCadastrar();
+                usuario = new CadastrarUsuario();
                 usuario.setId_cadastro(rs.getInt("id_cadastro"));
                 usuario.setNome(rs.getString("username"));
                 usuario.setEmail(rs.getString("email"));

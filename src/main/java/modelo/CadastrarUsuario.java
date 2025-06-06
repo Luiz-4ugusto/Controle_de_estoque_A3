@@ -1,23 +1,23 @@
 package modelo;
 
-public class ModeloCadastrar {
+public class CadastrarUsuario {
 
     private int id_cadastro;
     private String nome;
     private String email;
     private String senha;
 
-    public ModeloCadastrar() {
+    public CadastrarUsuario() {
         this(0, "", "", "");
     }
 
-    public ModeloCadastrar(String nome, String email, String senha) {
+    public CadastrarUsuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public ModeloCadastrar(int id_cadastro, String nome, String email, String senha) {
+    public CadastrarUsuario(int id_cadastro, String nome, String email, String senha) {
         this.id_cadastro = id_cadastro;
         this.nome = nome;
         this.email = email;

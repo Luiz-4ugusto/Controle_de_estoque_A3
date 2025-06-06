@@ -7,6 +7,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Classe responsável pela interface gráfica de cadastro, edição, listagem e
+ * exclusão de categorias.
+ *
+ * As operações realizadas são persistidas no banco de dados através da classe
+ * DAO correspondente.
  *
  * @author luiz
  */
@@ -14,6 +19,10 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
 
     private CadastrarCategoria objetoCadastrar;
 
+    /**
+     * Construtor da classe. Inicializa os componentes da interface e posiciona
+     * a janela no centro da tela.
+     */
     public FrmCadastrarCategoria() {
         initComponents();
         this.objetoCadastrar = new CadastrarCategoria();
@@ -21,6 +30,10 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Carrega todas as categorias cadastradas no banco de dados e exibe na
+     * tabela da interface.
+     */
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableCategoria.getModel();
         modelo.setNumRows(0);
@@ -209,6 +222,11 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarActionPerformed
+        /**
+         * Ao clicar no botão "Cadastrar". Valida os dados inseridos, cria um
+         * novo objeto de categoria e insere no banco de dados.
+         *
+         */
         try {
             String nome = JTextNome.getText().trim();
             String embalagem = jComboBox1.getSelectedItem().toString().trim();
@@ -269,6 +287,12 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_JButtonCadastrarActionPerformed
 
     private void JButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEditarActionPerformed
+        /**
+         * Ao clicar no botão "Editar". Atualiza os dados da categoria
+         * selecionada com os novos valores inseridos.
+         *
+         */
+
         try {
 
             int id = 0;
@@ -317,6 +341,11 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_JButtonSairActionPerformed
 
     private void JTableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableCategoriaMouseClicked
+        /**
+         * Ao clicar em uma linha da tabela. Preenche os campos da interface com
+         * os dados da categoria selecionada.
+         */
+
         if (this.JTableCategoria.getSelectedRow() != -1) {
             String id = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 0).toString();
             String nome = this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 1).toString();
@@ -331,6 +360,13 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_JTableCategoriaMouseClicked
 
     private void JButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonExcluirActionPerformed
+        /**
+         * Ao clicar no botão "Excluir". Remove a categoria
+         * selecionada da base de dados após confirmação do usuário.
+         *
+         * @param evt Evento de clique do botão
+         */
+
         try {
             int id = 0;
             if (this.JTableCategoria.getSelectedRow() == -1) {

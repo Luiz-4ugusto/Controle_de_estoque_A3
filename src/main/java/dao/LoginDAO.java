@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.ModeloLogin;
+import modelo.LoginUsuario;
 
 public class LoginDAO {
 
@@ -73,12 +73,12 @@ public class LoginDAO {
         return loginValido;
     }
 
-    public ModeloLogin buscarUsername(String username) {
+    public LoginUsuario buscarUsername(String username) {
         String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE username = ?"; 
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ModeloLogin usuario = null;
+        LoginUsuario usuario = null;
 
         try {
             conn = this.getConexao();
@@ -88,7 +88,7 @@ public class LoginDAO {
                 rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    usuario = new ModeloLogin(rs.getString("senha"), rs.getString("username")); 
+                    usuario = new LoginUsuario(rs.getString("senha"), rs.getString("username"));
                 }
             }
         } catch (SQLException e) {
@@ -105,7 +105,7 @@ public class LoginDAO {
         return usuario;
     }
 
-    public boolean inserirUsername(ModeloLogin usuario) {
+    public boolean inserirUsername(LoginUsuario usuario) {
         String sql = "INSERT INTO tb_usuarios (username, senha) VALUES (?, ?)"; 
         Connection conn = null;
         PreparedStatement stmt = null;

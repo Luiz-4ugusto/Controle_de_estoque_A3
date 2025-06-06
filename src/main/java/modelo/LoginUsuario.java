@@ -1,13 +1,13 @@
 package modelo;
 
-public class ModeloLogin {
+public class LoginUsuario {
 
     private String username;
     private String senha;
 
-    public ModeloLogin() {}
+    public LoginUsuario() {}
 
-    public ModeloLogin(String username, String senha) {
+    public LoginUsuario(String username, String senha) {
         this.username = username;
         this.senha = senha;
     }

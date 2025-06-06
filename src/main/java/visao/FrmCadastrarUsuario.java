@@ -3,9 +3,8 @@ package visao;
 
 import dao.CadastrarUsuarioDAO;
 import javax.swing.JOptionPane;
-import dao.LoginDAO;
-import modelo.ModeloCadastrar;
-import modelo.ModeloLogin;
+
+import modelo.CadastrarUsuario;
 
 public class FrmCadastrarUsuario extends javax.swing.JFrame {
 
@@ -143,12 +142,12 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
 
             CadastrarUsuarioDAO cadastrarDAO = new CadastrarUsuarioDAO();
 
-            ModeloCadastrar usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
+            CadastrarUsuario usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
             if (usuarioExistentePorNome != null) {
                 throw new MensagemLogin("O nome de usuário informado já está sendo usado.");
             }
 
-            ModeloCadastrar novoUsuario = new ModeloCadastrar();
+            CadastrarUsuario novoUsuario = new CadastrarUsuario();
             novoUsuario.setNome(username);
             novoUsuario.setEmail(email);
             novoUsuario.setSenha(senha); // A senha é setada como String no ModeloCadastrar
