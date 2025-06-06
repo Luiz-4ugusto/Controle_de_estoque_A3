@@ -30,7 +30,7 @@ public class CadastrarProdutoDao {
         ArrayList<CadastrarProduto> lista = new ArrayList<>();
 
         String sql = "SELECT p.*, c.nome as categoria_nome, c.embalagem as categoria_embalagem, c.tamanho as categoria_tamanho "
-                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id";
+                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id  ORDER BY p.id ASC";
 
         try (Connection conn = conexaoDAO.getConexao(); Statement stmt = conn.createStatement(); ResultSet res = stmt.executeQuery(sql)) {
 
