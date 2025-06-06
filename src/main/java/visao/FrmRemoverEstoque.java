@@ -12,12 +12,12 @@ import modelo.CadastrarProduto;
  *
  * @author Arthur
  */
-public class FrmRemoverEstoq extends javax.swing.JFrame {
+public class FrmRemoverEstoque extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmRemoverEstoq
+     * Creates new form FrmRemoverEstoque
      */
-    public FrmRemoverEstoq() {
+    public FrmRemoverEstoque() {
         initComponents();
     }
 
@@ -219,20 +219,20 @@ try {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoverEstoq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRemoverEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoverEstoq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRemoverEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoverEstoq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRemoverEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoverEstoq.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRemoverEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRemoverEstoq().setVisible(true);
+                new FrmRemoverEstoque().setVisible(true);
             }
         });
     }

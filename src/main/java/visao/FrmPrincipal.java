@@ -1,5 +1,9 @@
 package visao;
 
+/**
+ *
+ * @author luiz
+ */
 public class FrmPrincipal extends javax.swing.JFrame {
 
     public FrmPrincipal() {
@@ -125,21 +129,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        FrmAdicionarEstoq objeto = new FrmAdicionarEstoq();
+        FrmAdicionarEstoque objeto = new FrmAdicionarEstoque();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        FrmRemoverEstoq objeto = new FrmRemoverEstoq();
+        FrmRemoverEstoque objeto = new FrmRemoverEstoque();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-
     }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
