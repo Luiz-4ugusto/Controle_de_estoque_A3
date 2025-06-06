@@ -15,6 +15,7 @@ public class FrmConsultarFinancas extends javax.swing.JFrame {
      */
     public FrmConsultarFinancas() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
