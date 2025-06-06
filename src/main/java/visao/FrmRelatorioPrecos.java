@@ -16,7 +16,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
      */
     public FrmRelatorioPrecos() {
         initComponents();
-
+        setLocationRelativeTo(null);
     }
 
     public FrmRelatorioPrecos(JTable jTableProdutos) {
