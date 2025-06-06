@@ -57,7 +57,6 @@ public class CadastrarUsuarioDAO {
      * @return true se o usuário foi inserido com sucesso, false caso contrário.
      */
     public boolean inserirUsuario(CadastrarUsuario usuario) {
-        // A query está correta para inserir username, email e senha
         String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
 
         try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
