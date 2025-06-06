@@ -4,7 +4,6 @@
  * Banco de dados: db_controledeestoque
  * Usuário: root
  * Senha: 070600@
- *
  * @author luiz
  */
 package dao;
