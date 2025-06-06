@@ -25,7 +25,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
@@ -37,6 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestão de estoque ");
+        setPreferredSize(new java.awt.Dimension(982, 670));
 
         jMenu3.setText("File");
 
@@ -72,18 +74,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
-        jMenu5.setText("Consultar Finanças");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+        jMenu7.setText("Relatórios");
+
+        jMenuItem6.setText("Consultar Finanças");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
+                jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenu5);
+        jMenu7.add(jMenuItem6);
+
+        jMenu3.add(jMenu7);
 
         jMenuItem3.setText("Sair");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -138,11 +139,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-    }//GEN-LAST:event_jMenu5ActionPerformed
-
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-    }//GEN-LAST:event_jMenu5MouseClicked
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        FrmConsultarFinancas objeto = new FrmConsultarFinancas();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +185,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
@@ -193,6 +193,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
