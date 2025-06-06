@@ -1,19 +1,32 @@
 package visao;
 
 import javax.swing.JOptionPane;
-import dao.LoginDAO;
+import dao.LoginDAO; // Importa a classe DAO responsável pela lógica de autenticação.
 
+/**
+ * Classe FrmLogin responsável pela interface gráfica de login da aplicação.
+ * Permite ao usuário inserir suas credenciais (usuário e senha) para acessar o
+ * sistema, ou navegar para a tela de cadastro de novos usuários.
+ */
 public class FrmLogin extends javax.swing.JFrame {
 
+    // Declara uma instância da classe LoginDAO para lidar com a comunicação com o banco de dados
+    // e a validação do login.
     private LoginDAO loginDAO;
 
+    /**
+     * Construtor padrão da classe FrmLogin. Inicializa os componentes da
+     * interface gráfica (elementos visuais) e centraliza a janela de login na
+     * tela do usuário. Também inicializa a instância de LoginDAO.
+     */
     public FrmLogin() {
         initComponents();
-        setLocationRelativeTo(null);
-        loginDAO = new LoginDAO();
+        setLocationRelativeTo(null); // Centraliza a janela FrmLogin na tela.
+        loginDAO = new LoginDAO();   // Instancia o objeto LoginDAO para usar suas funcionalidades.
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -147,29 +160,38 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void JButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEntrarActionPerformed
         try {
+            // Obtém o texto do campo de login e remove espaços em branco extras.
             String username = JTextLogin.getText().trim();
+            // Obtém a senha do campo de senha (JPasswordField) como String e remove espaços.
+            // Converte JPasswordField.getPassword() para String para uso.
             String senha = new String(JPasswordLogin.getPassword()).trim();
 
+            // Validação: verifica se o campo de usuário está vazio.
             if (username.isEmpty()) {
                 throw new MensagemLogin("Por favor, informe o nome de usuário.");
             }
 
+            // Validação: verifica se o nome de usuário tem ao menos 2 caracteres.
             if (username.length() < 2) {
                 throw new MensagemLogin("O nome de usuário deve conter ao menos 2 caracteres.");
             }
 
+            // Validação: verifica se o campo de senha está vazio.
             if (senha.isEmpty()) {
                 throw new MensagemLogin("Por favor, informe a senha.");
             }
 
+            // Chama o método validarLogin do LoginDAO para verificar as credenciais no banco.
             if (loginDAO.validarLogin(username, senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-                this.dispose(); // Fecha a tela de login
-                new FrmPrincipal().setVisible(true); // Abre a tela principal
+                this.dispose(); // Fecha a tela de login.
+                new FrmPrincipal().setVisible(true); // Abre a tela principal (FrmPrincipal).
             } else {
+                // Se o login falhar, lança uma exceção com a mensagem de erro.
                 throw new MensagemLogin("Usuário ou senha incorretos.");
             }
         } catch (MensagemLogin erro) {
+            // Captura e exibe mensagens de erro personalizadas (MensagemLogin).
             JOptionPane.showMessageDialog(null, erro.getMessage());
         }
     }//GEN-LAST:event_JButtonEntrarActionPerformed
@@ -179,17 +201,21 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_JTextLoginActionPerformed
 
     private void JButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarActionPerformed
-        this.dispose();
-        new FrmCadastrarUsuario().setVisible(true);
+        this.dispose(); // Fecha a tela de login.
+        new FrmCadastrarUsuario().setVisible(true); // Abre a tela de Cadastro de Usuários.
     }//GEN-LAST:event_JButtonCadastrarActionPerformed
 
     private void JPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPasswordLoginActionPerformed
         JButtonEntrarActionPerformed(evt);    }//GEN-LAST:event_JPasswordLoginActionPerformed
 
+    /**
+     * Método principal para iniciar a aplicação. É o ponto de entrada do
+     * programa.
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmLogin().setVisible(true);
+                new FrmLogin().setVisible(true); // Cria e torna a janela FrmLogin visível.
             }
         });
     }
