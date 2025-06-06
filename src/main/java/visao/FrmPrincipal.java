@@ -12,7 +12,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -27,6 +27,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
@@ -84,6 +85,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem6);
 
+        jMenuItem7.setText("Relatório Produto agrupado por categoria");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem7);
+
         jMenu3.add(jMenu7);
 
         jMenuItem3.setText("Sair");
@@ -113,36 +122,41 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         System.exit(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }                                          
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         FrmCadastrarCategoria objeto = new FrmCadastrarCategoria();
         objeto.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }                                          
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         FrmCadastrarProduto objeto = new FrmCadastrarProduto();
         objeto.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }                                          
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         FrmAdicionarEstoque objeto = new FrmAdicionarEstoque();
         objeto.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }                                          
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         FrmRemoverEstoque objeto = new FrmRemoverEstoque();
         objeto.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }                                          
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         FrmConsultarFinancas objeto = new FrmConsultarFinancas();
         objeto.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }                                          
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        FrmRelatorioProdutosPorCategoria objeto = new FrmRelatorioProdutosPorCategoria();
+        objeto.setVisible(true);    // TODO add your handling code here:
+    }                                          
 
     /**
      * @param args the command line arguments
@@ -180,7 +194,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -194,6 +208,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPopupMenu jPopupMenu1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
