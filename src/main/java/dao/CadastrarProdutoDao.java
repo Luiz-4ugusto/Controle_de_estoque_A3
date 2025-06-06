@@ -1,6 +1,7 @@
 /**
  * Classe responsável pelas operações de acesso a dados (DAO)
  * da entidade Produto no banco de dados.
+ * @author luiz
  */
 package dao;
 
