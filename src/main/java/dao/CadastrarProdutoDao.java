@@ -248,6 +248,13 @@ public class CadastrarProdutoDao {
         return produto;
     }
     
-  
+  public ResultSet contarProdutosPorCategoria() throws SQLException {
+        String sql = "SELECT c.nome AS categoria, COUNT(p.id) AS quantidade "
+                + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id "
+                + "GROUP BY c.id, c.nome";
+
+        Connection conn = conexaoDAO.getConexao();
+        return conn.prepareStatement(sql).executeQuery();
+    }
     
 }
