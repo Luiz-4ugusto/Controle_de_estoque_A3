@@ -67,8 +67,12 @@ public class CadastrarUsuarioDAO {
             return false;
         } finally {
             try {
-                if (pst != null) pst.close();
-                if (con != null) con.close();
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar recursos após inserção: " + e.getMessage());
             }
@@ -103,16 +107,22 @@ public class CadastrarUsuarioDAO {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (pst != null) pst.close();
-                if (con != null) con.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar recursos após busca: " + e.getMessage());
             }
         }
         return usuario;
     }
-    
+
     //Busca a lista de e-mails no banco para validar se já existe
     public CadastrarUsuario buscarEmail(String email) {
         String sql = "SELECT id_cadastro, username, email, senha FROM tb_usuarios WHERE email = ?";
@@ -142,9 +152,15 @@ public class CadastrarUsuarioDAO {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (pst != null) pst.close();
-                if (con != null) con.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar recursos após busca por email: " + e.getMessage());
             }
@@ -174,9 +190,15 @@ public class CadastrarUsuarioDAO {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (con != null) con.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
             } catch (SQLException e) {
                 System.err.println("Erro ao fechar recursos após obter usernames: " + e.getMessage());
             }

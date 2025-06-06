@@ -172,40 +172,40 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
-    try {
-        int linhaSelecionada = jTable1.getSelectedRow();
-        if (linhaSelecionada == -1) {
-            throw new Exception("Selecione um produto na tabela.");
+        try {
+            int linhaSelecionada = jTable1.getSelectedRow();
+            if (linhaSelecionada == -1) {
+                throw new Exception("Selecione um produto na tabela.");
+            }
+
+            String texto = jTextAdd.getText().trim();
+            if (texto.isEmpty()) {
+                throw new NumberFormatException();
+            }
+
+            int estoqueAtual = Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 2).toString());
+            int valorAdicionado = Integer.parseInt(texto);
+            int maximo = Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 4).toString());
+
+            int novoEstoque = estoqueAtual + valorAdicionado;
+            if (novoEstoque > maximo) {
+                throw new Exception("Estoque não pode ultrapassar o limite máximo (" + maximo + ").");
+            }
+
+            jTable1.setValueAt(String.valueOf(novoEstoque), linhaSelecionada, 2);
+
+            CadastrarProdutoDao dao = new CadastrarProdutoDao();
+            CadastrarProduto produto = dao.getListaProdutos().get(linhaSelecionada);
+            produto.setQuantidade(novoEstoque);
+
+            dao.atualizarProduto(produto);
+
+            jTextAdd.setText("");
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Digite um valor numérico válido.");
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
-        String texto = jTextAdd.getText().trim();
-        if (texto.isEmpty()) {
-            throw new NumberFormatException();
-        }
-
-        int estoqueAtual = Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 2).toString());
-        int valorAdicionado = Integer.parseInt(texto);
-        int maximo = Integer.parseInt(jTable1.getValueAt(linhaSelecionada, 4).toString());
-
-        int novoEstoque = estoqueAtual + valorAdicionado;
-        if (novoEstoque > maximo) {
-            throw new Exception("Estoque não pode ultrapassar o limite máximo (" + maximo + ").");
-        }
-
-        jTable1.setValueAt(String.valueOf(novoEstoque), linhaSelecionada, 2);
-
-        CadastrarProdutoDao dao = new CadastrarProdutoDao();
-        CadastrarProduto produto = dao.getListaProdutos().get(linhaSelecionada);
-        produto.setQuantidade(novoEstoque);
-
-        dao.atualizarProduto(produto);
-
-        jTextAdd.setText("");
-    } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Digite um valor numérico válido.");
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
-    }
     }//GEN-LAST:event_jAddActionPerformed
 
     /**
