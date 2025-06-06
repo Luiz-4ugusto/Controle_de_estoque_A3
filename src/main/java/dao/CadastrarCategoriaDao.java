@@ -1,7 +1,6 @@
 /**
  * Classe responsável pelo acesso ao banco de dados para a entidade CadastrarCategoria.
  * Contém métodos para inserir, listar, buscar, atualizar e remover categorias.
- * @author luiz
  */
 package dao;
 
