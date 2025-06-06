@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Classe FrmRelatorioEstoqueIrregular responsável por exibir relatórios de
+ * Classe FrmRelatorioEstoqueIrregular responsável por exibir o relatório de
  * produtos com estoque abaixo / iguais ao mínimo ou acima do máximo permitido.
  * Permite ao usuário visualizar rapidamente quais produtos necessitam de
  * atenção para manter o estoque em níveis ideais.
