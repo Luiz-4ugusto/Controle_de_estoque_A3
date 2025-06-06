@@ -135,16 +135,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        FrmRelatorioPrecos objeto = new FrmRelatorioPrecos();
-        objeto.setVisible(true);
 
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-
-        FrmLogin objeto = new FrmLogin();
-        objeto.setVisible(true);
-
 
     }//GEN-LAST:event_jMenu5MouseClicked
 
