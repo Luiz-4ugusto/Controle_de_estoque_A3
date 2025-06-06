@@ -1,9 +1,5 @@
 package visao;
 
-/**
- *
- * @author luiz
- */
 public class FrmPrincipal extends javax.swing.JFrame {
 
     public FrmPrincipal() {
@@ -146,7 +142,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
 
-        FrmConsultarFinancas objeto = new FrmConsultarFinancas();
+        FrmLogin objeto = new FrmLogin();
         objeto.setVisible(true);
 
 
