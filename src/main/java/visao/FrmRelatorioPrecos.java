@@ -42,10 +42,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
 
         JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nome", "Preço", "Valor Total", "Quantidade em Estoque", "Unidade", "Categoria"
