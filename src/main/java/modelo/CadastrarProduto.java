@@ -137,7 +137,12 @@ public class CadastrarProduto {
                 + ", categoria=" + (categoria != null ? categoria.getNome() : "Nenhuma")
                 + '}';
     }
-    
+    /**
+    * Calcula o valor total do estoque para a instância atual do produto/item.
+    * Este método determina o valor monetário total do estoque ao multiplicar
+    * a quantidade atual de itens disponíveis (`getQuantidade()`) pelo seu
+    * preço unitário (`getPreco()`)
+    */
     public Object getValorTotal() {
         return (int) (getQuantidade() * getPreco());
      }
