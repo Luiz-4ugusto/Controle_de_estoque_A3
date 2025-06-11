@@ -11,6 +11,17 @@ Este sistema foi desenvolvido como parte da disciplina de Programação de Solu�
 
 Este projeto tem como objetivo o desenvolvimento de um sistema de controle de estoque, permitindo ao usuário realizar uma gestão mais eficiente dos produtos armazenados. O sistema oferece funcionalidades como cadastro e atualização de produtos, além da geração de relatórios, como lista de preços, balanço físico/financeiro e controle de itens que estão abaixo ou acima dos níveis ideais de estoque.
 A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a interface gráfica, MySQL como sistema de gerenciamento de banco de dados e o padrão DAO para a abstração da camada de dados, promovendo uma estrutura organizada e de fácil manutenção.
+
+
+
+
+## Documentação
+
+- [Documentação para a criação do controle de estoque](https://mediacdns3.ulife.com.br/PAT/Upload/5688953/A3_roteiro_20250529201959.pdf)
+
+
+
+
 ## Alunos
 
 | Nome Completo               | Github                                                | RA                  |
@@ -83,7 +94,6 @@ usuário e senha do bd:
 
  - [How to Create a Perfect README for Your GitHub Project](https://medium.com/@sumudithalanz/the-art-of-crafting-an-effective-readme-for-your-github-project-cf425a8b1580)
   - [readme.so](https://readme.so/pt/editor)
- - [Documentação para a criação do controle de estoque](https://mediacdns3.ulife.com.br/PAT/Upload/5688953/A3_roteiro_20250529201959.pdf)
  - [Implementando documentação através do NetBeans](https://www.devmedia.com.br/javadoc-implementando-documentacao-atraves-do-netbeans/2495)
   - [Requisitos funcionais e não funcionais](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
   - [How to link github to Netbeans projects](https://www.youtube.com/watch?v=UOIPS-ewFHg)
