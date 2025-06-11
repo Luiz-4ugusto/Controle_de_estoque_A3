@@ -73,6 +73,8 @@ RNF05. O sistema deve validar os dados inseridos pelo usuário e, caso algum val
 A pasta `database` contém os scripts de conexão e criação das tabelas utilizadas neste projeto.  Execute o script em seu servidor SQL local para criar a estrutura do banco de dados necessária ao funcionamento da aplicação.
 nome da base: db_controledeestoque
 usuário e senha do bd:
+
+
             String user = "root";
             String password = "070600@";
 
@@ -85,9 +87,9 @@ usuário e senha do bd:
  - [Implementando documentação através do NetBeans](https://www.devmedia.com.br/javadoc-implementando-documentacao-atraves-do-netbeans/2495)
   - [Requisitos funcionais e não funcionais](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
   - [How to link github to Netbeans projects](https://www.youtube.com/watch?v=UOIPS-ewFHg)
-  - [Arquivo base disponibilizados pelo professor Osmar para a criação de interface gráfica.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/11_Interfaces_graficas_20250519185608.pdf)
+  - [Arquivo base disponibilizados pelo professor Osmar da disciplina de programação de soluções computacionais para a criação de interface gráfica.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/11_Interfaces_graficas_20250519185608.pdf)
   - [Arquivo base disponibilizados pelo professor Osmar para a criação de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/12_BD_mysql_workbench_20250512213257.pdf)
-- [Arquivo base disponibilizados pelo professor Osmar para a criação e integração de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/13_BD_DAO_sem_control_20250512213305.pdf)
+  - [Arquivo base disponibilizados pelo professor Osmar para a criação e integração de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/13_BD_DAO_sem_control_20250512213305.pdf)
 
   
 
