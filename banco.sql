@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS db_controledeestoque;
+USE db_controledeestoque;
+
+
 CREATE TABLE `tb_categoria` (
   `id` int NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
@@ -6,7 +10,7 @@ CREATE TABLE `tb_categoria` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
----------------//-----------------
+
 
 CREATE TABLE `tb_produto` (
   `id` int NOT NULL,
@@ -22,7 +26,7 @@ CREATE TABLE `tb_produto` (
   CONSTRAINT `tb_produto_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `tb_categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
----------------//-----------------
+
 
 CREATE TABLE `tb_usuarios` (
   `id_cadastro` int NOT NULL AUTO_INCREMENT,
