@@ -27,7 +27,7 @@ A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a inte
 | Nome Completo               | Github                                                | RA                  |
 | ----------------- | ---------------------------------------------------------- | --------------------------------- |
 | Arthur Graciliano  Oliveira de Souza      | Arthurc0mH| 1072518568     |
-| Gustavo de Espindola Martins       | ChocolateKest| 10724238393    |
+| Gustavo de Espindola Martins       | gustavodees| 10724238393    |
 | Igor Ragen Valau Martins       | IgorRagen | 1072513366  |
 | Júlio Cesar de Souza Mauro       | JcMauro | 10724269838     |
 | Luiz Augusto Pereira       | Luiz-4ugusto | 10725115943     |
