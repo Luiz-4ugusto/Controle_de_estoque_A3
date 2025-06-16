@@ -11,12 +11,23 @@ Este sistema foi desenvolvido como parte da disciplina de Programação de Solu�
 
 Este projeto tem como objetivo o desenvolvimento de um sistema de controle de estoque, permitindo ao usuário realizar uma gestão mais eficiente dos produtos armazenados. O sistema oferece funcionalidades como cadastro e atualização de produtos, além da geração de relatórios, como lista de preços, balanço físico/financeiro e controle de itens que estão abaixo ou acima dos níveis ideais de estoque.
 A aplicação foi desenvolvida utilizando a linguagem Java com Swing para a interface gráfica, MySQL como sistema de gerenciamento de banco de dados e o padrão DAO para a abstração da camada de dados, promovendo uma estrutura organizada e de fácil manutenção.
+
+
+
+
+## Documentação
+
+- [Documentação para a criação do controle de estoque](https://mediacdns3.ulife.com.br/PAT/Upload/5688953/A3_roteiro_20250529201959.pdf)
+
+
+
+
 ## Alunos
 
 | Nome Completo               | Github                                                | RA                  |
 | ----------------- | ---------------------------------------------------------- | --------------------------------- |
 | Arthur Graciliano  Oliveira de Souza      | Arthurc0mH| 1072518568     |
-| Gustavo de Espindola Martins       | ChocolateKest| 10724238393    |
+| Gustavo de Espindola Martins       | gustavodees| 10724238393    |
 | Igor Ragen Valau Martins       | IgorRagen | 1072513366  |
 | Júlio Cesar de Souza Mauro       | JcMauro | 10724269838     |
 | Luiz Augusto Pereira       | Luiz-4ugusto | 10725115943     |
@@ -73,6 +84,8 @@ RNF05. O sistema deve validar os dados inseridos pelo usuário e, caso algum val
 A pasta `database` contém os scripts de conexão e criação das tabelas utilizadas neste projeto.  Execute o script em seu servidor SQL local para criar a estrutura do banco de dados necessária ao funcionamento da aplicação.
 nome da base: db_controledeestoque
 usuário e senha do bd:
+
+
             String user = "root";
             String password = "070600@";
 
@@ -81,13 +94,12 @@ usuário e senha do bd:
 
  - [How to Create a Perfect README for Your GitHub Project](https://medium.com/@sumudithalanz/the-art-of-crafting-an-effective-readme-for-your-github-project-cf425a8b1580)
   - [readme.so](https://readme.so/pt/editor)
- - [Documentação para a criação do controle de estoque](https://mediacdns3.ulife.com.br/PAT/Upload/5688953/A3_roteiro_20250529201959.pdf)
  - [Implementando documentação através do NetBeans](https://www.devmedia.com.br/javadoc-implementando-documentacao-atraves-do-netbeans/2495)
   - [Requisitos funcionais e não funcionais](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
   - [How to link github to Netbeans projects](https://www.youtube.com/watch?v=UOIPS-ewFHg)
-  - [Arquivo base disponibilizados pelo professor Osmar para a criação de interface gráfica.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/11_Interfaces_graficas_20250519185608.pdf)
-  - [Arquivo base disponibilizados pelo professor Osmar para a criação de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/12_BD_mysql_workbench_20250512213257.pdf)
-- [Arquivo base disponibilizados pelo professor Osmar para a criação e integração de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/13_BD_DAO_sem_control_20250512213305.pdf)
+  - [Arquivo base disponibilizado pelo professor Osmar, da disciplina de Programação de Soluções Computacionais, para a criação de interface gráfica.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/11_Interfaces_graficas_20250519185608.pdf)
+  - [Arquivo base disponibilizado pelo professor Osmar, da disciplina de Programação de Soluções Computacionais, para a criação de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/12_BD_mysql_workbench_20250512213257.pdf)
+  - [Arquivo base disponibilizado pelo professor Osmar, da disciplina de Programação de Soluções Computacionais, para a criação e integração de banco de dados.](https://mediacdns3.ulife.com.br/PAT/Upload/2985299/13_BD_DAO_sem_control_20250512213305.pdf)
 
   
 
