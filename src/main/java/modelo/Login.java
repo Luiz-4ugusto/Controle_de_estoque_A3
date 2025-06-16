@@ -7,14 +7,14 @@ package modelo;
  * da aplicação
  */
 
-public class LoginUsuario {
+public class Login {
 
     private String username;
     private String senha;
 
-    public LoginUsuario() {}
+    public Login() {}
 
-    public LoginUsuario(String username, String senha) {
+    public Login(String username, String senha) {
         this.username = username;
         this.senha = senha;
     }

@@ -7,7 +7,7 @@ package modelo;
  * unidade de medida e a categoria associada.
  * @author luiz
  */
-public class CadastrarProduto {
+public class Produto {
     // Atributos principais do produto
 
     private int id;
@@ -17,11 +17,11 @@ public class CadastrarProduto {
     private int min;
     private int max;
     private String unidade;
-    private CadastrarCategoria categoria;
+    private Categoria categoria;
     /**
      * Construtor padrão que inicializa os campos com valores padrão.
      */
-    public CadastrarProduto() {
+    public Produto() {
         this(0, "", 0.0, 0, 0, 0, "", null);
     }
     /**
@@ -36,7 +36,7 @@ public class CadastrarProduto {
      * @param unidade Unidade de medida
      * @param categoria Categoria associada ao produto
      */
-    public CadastrarProduto(int id, String nome, double preco, int quantidade, int min, int max, String unidade, CadastrarCategoria categoria) {
+    public Produto(int id, String nome, double preco, int quantidade, int min, int max, String unidade, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -108,11 +108,11 @@ public class CadastrarProduto {
         this.unidade = unidade;
     }
 
-    public CadastrarCategoria getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CadastrarCategoria categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

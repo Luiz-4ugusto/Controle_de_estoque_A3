@@ -1,8 +1,8 @@
 package visao;
 
-import dao.CadastrarCategoriaDao;
+import dao.CategoriaDao;
 import java.util.ArrayList;
-import modelo.CadastrarCategoria;
+import modelo.Categoria;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmCadastrarCategoria extends javax.swing.JFrame {
 
-    private CadastrarCategoria objetoCadastrar;
+    private Categoria objetoCadastrar;
 
     /**
      * Construtor da classe. Inicializa os componentes da interface e posiciona
@@ -25,7 +25,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
      */
     public FrmCadastrarCategoria() {
         initComponents();
-        this.objetoCadastrar = new CadastrarCategoria();
+        this.objetoCadastrar = new Categoria();
         setLocationRelativeTo(null);
 
     }
@@ -38,8 +38,8 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableCategoria.getModel();
         modelo.setNumRows(0);
 
-        CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
-        for (CadastrarCategoria categoria : dao.getLista()) {
+        CategoriaDao dao = new CategoriaDao();
+        for (Categoria categoria : dao.getLista()) {
             modelo.addRow(new Object[]{
                 categoria.getId(),
                 categoria.getNome(),
@@ -248,9 +248,9 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                     throw new Mensagem("ID deve ser maior que zero.");
 
                 }
-                ArrayList<CadastrarCategoria> categorias = new CadastrarCategoriaDao().getLista();
+                ArrayList<Categoria> categorias = new CategoriaDao().getLista();
 
-                for (CadastrarCategoria categoria : categorias) {
+                for (Categoria categoria : categorias) {
                     if (categoria.getId() == id) {
                         throw new Mensagem("ID " + id + " já cadastrado");
 
@@ -269,7 +269,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
             this.objetoCadastrar.setNome(nome);
             this.objetoCadastrar.setEmbalagem(embalagem);
             this.objetoCadastrar.setTamanho(tamanho);
-            CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
+            CategoriaDao dao = new CategoriaDao();
             if (dao.inserirCategoria(this.objetoCadastrar)) {
                 JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
                 JTextID.setText("");
@@ -277,7 +277,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 jComboBox1.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
                 carregaTabela();
-                this.objetoCadastrar = new CadastrarCategoria();
+                this.objetoCadastrar = new Categoria();
             }
 
         } catch (Mensagem erro) {
@@ -312,8 +312,8 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 id = Integer.parseInt(this.JTableCategoria.getValueAt(this.JTableCategoria.getSelectedRow(), 0).toString());
             }
 
-            CadastrarCategoria categoriaAtualizada = new CadastrarCategoria(id, nome, embalagem, tamanho);
-            CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
+            Categoria categoriaAtualizada = new Categoria(id, nome, embalagem, tamanho);
+            CategoriaDao dao = new CategoriaDao();
             if (dao.atualizarCategoria(categoriaAtualizada)) {
                 this.JTextID.setText("");
                 this.JTextNome.setText("");
@@ -325,7 +325,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Categoria Alterada com Sucesso!");
             }
 
-            System.out.println(new CadastrarCategoriaDao().getLista().toString());
+            System.out.println(new CategoriaDao().getLista().toString());
 
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
@@ -385,7 +385,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
             );
 
             if (respostaUsuario == JOptionPane.YES_OPTION) {
-                CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
+                CategoriaDao dao = new CategoriaDao();
                 if (dao.removerCategoria(id)) {
                     this.JTextID.setText("");
                     this.JTextNome.setText("");
@@ -399,7 +399,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 }
             }
 
-            CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
+            CategoriaDao dao = new CategoriaDao();
             System.out.println(dao.getLista().toString());
 
         } catch (Mensagem erro) {

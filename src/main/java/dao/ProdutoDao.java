@@ -5,19 +5,19 @@
  */
 package dao;
 
-import modelo.CadastrarProduto;
-import modelo.CadastrarCategoria;
+import modelo.Produto;
+import modelo.Categoria;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class CadastrarProdutoDao {
+public class ProdutoDao {
 
     private final ConexaoDAO conexaoDAO;
 
     /**
      * Construtor padrão que inicializa a conexão com o banco.
      */
-    public CadastrarProdutoDao() {
+    public ProdutoDao() {
         this.conexaoDAO = new ConexaoDAO();
     }
 
@@ -26,8 +26,8 @@ public class CadastrarProdutoDao {
      *
      * @return Lista de produtos com suas categorias associadas
      */
-    public ArrayList<CadastrarProduto> getListaProdutos() {
-        ArrayList<CadastrarProduto> lista = new ArrayList<>();
+    public ArrayList<Produto> getListaProdutos() {
+        ArrayList<Produto> lista = new ArrayList<>();
 
         String sql = "SELECT p.*, c.nome as categoria_nome, c.embalagem as categoria_embalagem, c.tamanho as categoria_tamanho "
                 + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id  ORDER BY p.id ASC";
@@ -47,8 +47,8 @@ public class CadastrarProdutoDao {
                 String categoriaEmbalagem = res.getString("categoria_embalagem");
                 String categoriaTamanho = res.getString("categoria_tamanho");
 
-                CadastrarCategoria categoria = new CadastrarCategoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
-                CadastrarProduto produto = new CadastrarProduto(id, nome, preco, quantidade, min, max, unidade, categoria);
+                Categoria categoria = new Categoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
+                Produto produto = new Produto(id, nome, preco, quantidade, min, max, unidade, categoria);
                 lista.add(produto);
             }
         } catch (SQLException ex) {
@@ -63,7 +63,7 @@ public class CadastrarProdutoDao {
      * @param p Produto a ser inserido
      * @return true se inserido com sucesso, false se houver erro
      */
-    public boolean inserirProduto(CadastrarProduto p) {
+    public boolean inserirProduto(Produto p) {
         String sql = "INSERT INTO tb_produto(id, nome, preco, quantidade, min, max, unidade, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = conexaoDAO.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -110,7 +110,7 @@ public class CadastrarProdutoDao {
      * @param p Produto com dados atualizados
      * @return true se atualizado com sucesso, false se houver erro
      */
-    public boolean atualizarProduto(CadastrarProduto p) {
+    public boolean atualizarProduto(Produto p) {
         String sql = "UPDATE tb_produto SET nome=?, preco=?, quantidade=?, min=?, max=?, unidade=?, categoria_id=? WHERE id=?";
 
         try (Connection conn = conexaoDAO.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -157,8 +157,8 @@ public class CadastrarProdutoDao {
      * @param id ID do produto
      * @return Produto encontrado ou null
      */
-    public CadastrarProduto buscarProduto(int id) {
-        CadastrarProduto produto = null;
+    public Produto buscarProduto(int id) {
+        Produto produto = null;
 
         String sql = "SELECT p.*, c.nome as categoria_nome, c.embalagem as categoria_embalagem, c.tamanho as categoria_tamanho "
                 + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id WHERE p.id = ?";
@@ -180,8 +180,8 @@ public class CadastrarProdutoDao {
                     String categoriaEmbalagem = res.getString("categoria_embalagem");
                     String categoriaTamanho = res.getString("categoria_tamanho");
 
-                    CadastrarCategoria categoria = new CadastrarCategoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
-                    produto = new CadastrarProduto(id, nome, preco, quantidade, min, max, unidade, categoria);
+                    Categoria categoria = new Categoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
+                    produto = new Produto(id, nome, preco, quantidade, min, max, unidade, categoria);
                 }
             }
         } catch (SQLException ex) {
@@ -213,10 +213,10 @@ public class CadastrarProdutoDao {
      * Busca um produto no banco de dados pelo seu nome.
      *
      * @param nome Nome do produto a ser buscado
-     * @return Objeto {@link CadastrarProduto} encontrado ou null se não existir
+     * @return Objeto {@link Produto} encontrado ou null se não existir
      */
-    public CadastrarProduto buscarProdutoPorNome(String nome) {
-        CadastrarProduto produto = null;
+    public Produto buscarProdutoPorNome(String nome) {
+        Produto produto = null;
 
         String sql = "SELECT p.*, c.nome AS categoria_nome, c.embalagem AS categoria_embalagem, c.tamanho AS categoria_tamanho "
                 + "FROM tb_produto p JOIN tb_categoria c ON p.categoria_id = c.id WHERE p.nome = ?";
@@ -238,8 +238,8 @@ public class CadastrarProdutoDao {
                     String categoriaEmbalagem = res.getString("categoria_embalagem");
                     String categoriaTamanho = res.getString("categoria_tamanho");
 
-                    CadastrarCategoria categoria = new CadastrarCategoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
-                    produto = new CadastrarProduto(id, nome, preco, quantidade, min, max, unidade, categoria);
+                    Categoria categoria = new Categoria(categoriaId, categoriaNome, categoriaEmbalagem, categoriaTamanho);
+                    produto = new Produto(id, nome, preco, quantidade, min, max, unidade, categoria);
                 }
             }
         } catch (SQLException ex) {

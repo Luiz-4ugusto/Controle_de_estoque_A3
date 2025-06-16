@@ -1,9 +1,9 @@
 package visao;
 
-import dao.CadastrarUsuarioDAO; // Importa a classe DAO responsável pela lógica de autenticação.
+import dao.UsuarioDAO; // Importa a classe DAO responsável pela lógica de autenticação.
 import javax.swing.JOptionPane;
 
-import modelo.CadastrarUsuario;
+import modelo.Usuario;
 
 /**
  * Classe responsável por representar a tela de cadastro de usuários da
@@ -164,16 +164,16 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
                 throw new MensagemLogin("A senha não pode estar vazia.");
             }
 
-            CadastrarUsuarioDAO cadastrarDAO = new CadastrarUsuarioDAO();
+            UsuarioDAO cadastrarDAO = new UsuarioDAO();
 
             // Busca por um usuário com o mesmo nome de usuário para evitar duplicidade
-            CadastrarUsuario usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
+            Usuario usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
             if (usuarioExistentePorNome != null) {
                 throw new MensagemLogin("O nome de usuário informado já está sendo usado.");
             }
 
-            // Cria um novo objeto CadastrarUsuario com os dados informados
-            CadastrarUsuario novoUsuario = new CadastrarUsuario();
+            // Cria um novo objeto Usuario com os dados informados
+            Usuario novoUsuario = new Usuario();
             novoUsuario.setNome(username);
             novoUsuario.setEmail(email);
             novoUsuario.setSenha(senha); // A senha é setada como String no ModeloCadastrar

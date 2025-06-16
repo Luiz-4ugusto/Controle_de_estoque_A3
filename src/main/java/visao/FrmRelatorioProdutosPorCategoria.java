@@ -1,6 +1,6 @@
 package visao;
 
-import dao.CadastrarProdutoDao;
+import dao.ProdutoDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -111,7 +111,7 @@ public class FrmRelatorioProdutosPorCategoria extends javax.swing.JFrame {
         modelo.setNumRows(0);
 
         // Instancia o DAO responsável pela consulta
-        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        ProdutoDao dao = new ProdutoDao();
 
         try {
             // Executa a consulta de contagem de produtos por categoria

@@ -8,7 +8,7 @@ package modelo;
  * Esta classe é utilizada para manipulação de dados de categorias no sistema de controle de estoque.
  * @author luiz
  */
-public class CadastrarCategoria {
+public class Categoria {
     private int id;
     private String nome;
     private String embalagem;
@@ -16,7 +16,7 @@ public class CadastrarCategoria {
     /**
      * Construtor padrão que inicializa os campos com valores vazios ou zero.
      */
-    public CadastrarCategoria() {
+    public Categoria() {
         this(0, "", "", "");
     }
     /**
@@ -27,7 +27,7 @@ public class CadastrarCategoria {
      * @param embalagem  Tipo de embalagem da categoria
      * @param tamanho    Tamanho da embalagem
      */
-    public CadastrarCategoria(int id, String nome, String embalagem, String tamanho) {
+    public Categoria(int id, String nome, String embalagem, String tamanho) {
         this.id = id;
         this.nome = nome;
         this.embalagem = embalagem;

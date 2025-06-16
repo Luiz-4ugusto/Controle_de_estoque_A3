@@ -5,7 +5,7 @@
  */
 package dao;
 
-import modelo.CadastrarCategoria;
+import modelo.Categoria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,22 +14,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-public class CadastrarCategoriaDao {
+public class CategoriaDao {
 
     private final ConexaoDAO conexaoDAO;
     /**
      * Construtor padrão. Inicializa a conexão com o banco de dados.
      */
-    public CadastrarCategoriaDao() {
+    public CategoriaDao() {
         this.conexaoDAO = new ConexaoDAO();
     }
     /**
      * Retorna uma lista com todas as categorias cadastradas.
      * 
-     * @return ArrayList de CadastrarCategoria.
+     * @return ArrayList de Categoria.
      */
-    public ArrayList<CadastrarCategoria> getLista() {
-        ArrayList<CadastrarCategoria> lista = new ArrayList<>();
+    public ArrayList<Categoria> getLista() {
+        ArrayList<Categoria> lista = new ArrayList<>();
 
         try (Connection conn = conexaoDAO.getConexao();
              Statement stmt = conn.createStatement();
@@ -41,7 +41,7 @@ public class CadastrarCategoriaDao {
                 String embalagem = res.getString("embalagem");
                 String tamanho = res.getString("tamanho");
 
-                CadastrarCategoria objeto = new CadastrarCategoria(id, nome, embalagem, tamanho);
+                Categoria objeto = new Categoria(id, nome, embalagem, tamanho);
                 lista.add(objeto);
             }
         } catch (SQLException ex) {
@@ -53,10 +53,10 @@ public class CadastrarCategoriaDao {
    /**
      * Insere uma nova categoria no banco de dados.
      * 
-     * @param c Objeto CadastrarCategoria a ser inserido.
+     * @param c Objeto Categoria a ser inserido.
      * @return true se inserção for bem-sucedida, false caso contrário.
      */
-    public boolean inserirCategoria(CadastrarCategoria c) {
+    public boolean inserirCategoria(Categoria c) {
         String sql = "INSERT INTO tb_categoria(id, nome, embalagem, tamanho) VALUES(?,?,?,?)";
 
         try (Connection conn = conexaoDAO.getConexao();
@@ -96,10 +96,10 @@ public class CadastrarCategoriaDao {
     /**
      * Atualiza uma categoria no banco de dados.
      * 
-     * @param c Objeto CadastrarCategoria com os dados atualizados.
+     * @param c Objeto Categoria com os dados atualizados.
      * @return true se a atualização for bem-sucedida, false caso contrário.
      */
-    public boolean atualizarCategoria(CadastrarCategoria c) {
+    public boolean atualizarCategoria(Categoria c) {
         String sql = "UPDATE tb_categoria SET nome = ?, embalagem = ?, tamanho = ? WHERE id = ?";
 
         try (Connection conn = conexaoDAO.getConexao();
@@ -142,10 +142,10 @@ public class CadastrarCategoriaDao {
      * Busca uma categoria no banco de dados pelo ID.
      * 
      * @param id Identificador da categoria.
-     * @return Objeto CadastrarCategoria encontrado ou null se não existir.
+     * @return Objeto Categoria encontrado ou null se não existir.
      */
-    public CadastrarCategoria buscarCategoria(int id) {
-        CadastrarCategoria categoria = null;
+    public Categoria buscarCategoria(int id) {
+        Categoria categoria = null;
         String sql = "SELECT * FROM tb_categoria WHERE id = ?";
 
         try (Connection conn = conexaoDAO.getConexao();
@@ -154,7 +154,7 @@ public class CadastrarCategoriaDao {
             stmt.setInt(1, id);
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    categoria = new CadastrarCategoria(
+                    categoria = new Categoria(
                         res.getInt("id"),
                         res.getString("nome"),
                         res.getString("embalagem"),

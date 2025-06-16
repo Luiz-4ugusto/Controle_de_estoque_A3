@@ -1,7 +1,7 @@
 package dao;
 
 // Importa a classe de modelo que representa um usuário no sistema.
-import modelo.CadastrarUsuario;
+import modelo.Usuario;
 
 // Importações necessárias para trabalhar com banco de dados em Java (JDBC).
 import java.sql.Connection;        // Interface para estabelecer uma conexão com o banco de dados.
@@ -17,7 +17,7 @@ import java.util.ArrayList;        // Para trabalhar com listas de objetos.
  * usuários no banco de dados. Esta classe abstrai a lógica de acesso ao banco
  * de dados da camada de negócio.
  */
-public class CadastrarUsuarioDAO {
+public class UsuarioDAO {
 
     // Instância da classe ConexaoDAO para gerenciar a conexão com o banco de dados.
     private final ConexaoDAO conexaoDAO;
@@ -27,20 +27,20 @@ public class CadastrarUsuarioDAO {
      * de ConexaoDAO para garantir que a conexão com o banco de dados esteja
      * disponível para as operações.
      */
-    public CadastrarUsuarioDAO() {
+    public UsuarioDAO() {
         this.conexaoDAO = new ConexaoDAO();
     }
 
     /**
      * Recupera todos os usuários cadastrados no banco de dados.
      *
-     * @return Uma {@code ArrayList} de objetos {@code CadastrarUsuario},
+     * @return Uma {@code ArrayList} de objetos {@code Usuario},
      * contendo todos os usuários encontrados. Retorna uma lista vazia se nenhum
      * usuário for encontrado ou em caso de erro.
      */
-    public ArrayList<CadastrarUsuario> getLista() {
+    public ArrayList<Usuario> getLista() {
         // Inicializa uma lista vazia para armazenar os usuários.
-        ArrayList<CadastrarUsuario> lista = new ArrayList<>();
+        ArrayList<Usuario> lista = new ArrayList<>();
         // Define a query SQL para selecionar todos os dados da tabela de usuários.
         // O ORDER BY id ASC garante que os resultados venham ordenados pelo ID.
         String sql = "SELECT id, username, email, senha FROM tb_usuarios ORDER BY id ASC";
@@ -58,8 +58,8 @@ public class CadastrarUsuarioDAO {
                 String email = res.getString("email");
                 String senha = res.getString("senha"); // Nota: Em aplicações reais, senhas nunca devem ser lidas em texto puro.
 
-                // Cria um novo objeto CadastrarUsuario com os dados recuperados do banco.
-                CadastrarUsuario objeto = new CadastrarUsuario(id, username, email, senha);
+                // Cria um novo objeto Usuario com os dados recuperados do banco.
+                Usuario objeto = new Usuario(id, username, email, senha);
                 // Adiciona o objeto à lista.
                 lista.add(objeto);
             }
@@ -75,13 +75,13 @@ public class CadastrarUsuarioDAO {
     /**
      * Insere um novo usuário no banco de dados.
      *
-     * @param usuario O objeto {@code CadastrarUsuario} contendo os dados do
+     * @param usuario O objeto {@code Usuario} contendo os dados do
      * novo usuário (nome de usuário, e-mail e senha).
      * @return {@code true} se o usuário foi inserido com sucesso (uma linha
      * afetada), {@code false} caso contrário (nenhuma linha afetada ou erro de
      * SQL).
      */
-    public boolean inserirUsuario(CadastrarUsuario usuario) {
+    public boolean inserirUsuario(Usuario usuario) {
         // Define a query SQL para inserir um novo registro.
         // O uso de '?' (placeholders) é uma prática segura para evitar SQL Injection.
         String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
@@ -113,14 +113,14 @@ public class CadastrarUsuarioDAO {
      * Busca um usuário no banco de dados usando o nome de usuário (username).
      *
      * @param username O nome de usuário a ser procurado no banco de dados.
-     * @return Um objeto {@code CadastrarUsuario} se um usuário com o nome de
+     * @return Um objeto {@code Usuario} se um usuário com o nome de
      * usuário especificado for encontrado. Retorna {@code null} se nenhum
      * usuário for encontrado ou em caso de erro.
      */
-    public CadastrarUsuario buscarUsername(String username) {
+    public Usuario buscarUsername(String username) {
         // Define a query SQL para buscar um usuário pelo username.
         String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE username = ?";
-        CadastrarUsuario usuario = null; // Inicializa o objeto usuário como nulo.
+        Usuario usuario = null; // Inicializa o objeto usuário como nulo.
 
         // O 'try-with-resources' garante que Connection, PreparedStatement e ResultSet sejam fechados.
         try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
@@ -128,12 +128,12 @@ public class CadastrarUsuarioDAO {
             pst.setString(1, username); // Define o username para o placeholder.
             try (ResultSet rs = pst.executeQuery()) { // Executa a query e obtém o resultado.
                 if (rs.next()) { // Se encontrou um registro (username é geralmente único).
-                    // Mapeia os dados do ResultSet para um objeto CadastrarUsuario.
+                    // Mapeia os dados do ResultSet para um objeto Usuario.
                     int id = rs.getInt("id");
                     String foundUsername = rs.getString("username");
                     String email = rs.getString("email");
                     String senha = rs.getString("senha");
-                    usuario = new CadastrarUsuario(id, foundUsername, email, senha);
+                    usuario = new Usuario(id, foundUsername, email, senha);
                 }
             }
         } catch (SQLException e) {
@@ -149,14 +149,14 @@ public class CadastrarUsuarioDAO {
      * Busca um usuário no banco de dados usando o endereço de e-mail.
      *
      * @param email O endereço de e-mail a ser procurado no banco de dados.
-     * @return Um objeto {@code CadastrarUsuario} se um usuário com o e-mail
+     * @return Um objeto {@code Usuario} se um usuário com o e-mail
      * especificado for encontrado. Retorna {@code null} se nenhum usuário for
      * encontrado ou em caso de erro.
      */
-    public CadastrarUsuario buscarEmail(String email) {
+    public Usuario buscarEmail(String email) {
         // Define a query SQL para buscar um usuário pelo email.
         String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE email = ?";
-        CadastrarUsuario usuario = null; // Inicializa o objeto usuário como nulo.
+        Usuario usuario = null; // Inicializa o objeto usuário como nulo.
 
         // O 'try-with-resources' garante que Connection, PreparedStatement e ResultSet sejam fechados.
         try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
@@ -164,12 +164,12 @@ public class CadastrarUsuarioDAO {
             pst.setString(1, email); // Define o email para o placeholder.
             try (ResultSet rs = pst.executeQuery()) { // Executa a query e obtém o resultado.
                 if (rs.next()) { // Se encontrou um registro (email deve ser único).
-                    // Mapeia os dados do ResultSet para um objeto CadastrarUsuario.
+                    // Mapeia os dados do ResultSet para um objeto Usuario.
                     int id = rs.getInt("id");
                     String username = rs.getString("username");
                     String foundEmail = rs.getString("email");
                     String senha = rs.getString("senha");
-                    usuario = new CadastrarUsuario(id, username, foundEmail, senha);
+                    usuario = new Usuario(id, username, foundEmail, senha);
                 }
             }
         } catch (SQLException e) {
