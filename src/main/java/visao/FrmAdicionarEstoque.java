@@ -11,14 +11,32 @@ import modelo.Produto;
  * adicionar uma quantidade ao seu estoque atual, atualizando a informação
  * no banco de dados.
  */
-public class FrmAdicionarEstoque extends javax.swing.JFrame {
+
+/**
+ * Formulário de interface gráfica que permite ao usuário adicionar
+ * quantidades ao estoque de produtos previamente cadastrados.
+ *
+ * Funcionalidades principais:
+ * - Listar produtos disponíveis em uma tabela.
+ * - Permitir seleção de um produto.
+ * - Adicionar uma quantidade ao estoque.
+ * - Atualizar o banco de dados com a nova quantidade.
+ *
+ * Utiliza a camada DAO para persistência dos dados.
+ */
+
 
     Produto cadprod = new Produto();
 
     /**
      * Creates new form FrmAdicionarEstoque
      */
-    public FrmAdicionarEstoque() {
+
+    /**
+     * Construtor da classe FrmAdicionarEstoque.
+     * Inicializa os componentes gráficos e prepara o formulário.
+     */
+
         initComponents();
     }
 
@@ -29,7 +47,12 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
 
-    public void carregaTabela() {
+
+    /**
+     * Carrega a tabela com todos os produtos cadastrados.
+     * Busca os dados por meio do ProdutoDAO e popula a tabela gráfica.
+     */
+
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setNumRows(0);
 
