@@ -117,7 +117,7 @@ public class UsuarioDAO {
      * usuário especificado for encontrado. Retorna {@code null} se nenhum
      * usuário for encontrado ou em caso de erro.
      */
-    public Usuario buscarUsername(String username) {
+    public Usuario buscarUsuario(String username) {
         // Define a query SQL para buscar um usuário pelo username.
         String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE username = ?";
         Usuario usuario = null; // Inicializa o objeto usuário como nulo.

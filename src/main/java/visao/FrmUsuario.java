@@ -146,12 +146,12 @@ public class FrmUsuario extends javax.swing.JFrame {
         // 6. Limpa os campos de texto após um cadastro bem-sucedido.
         try {
             // Obtém e remove espaços em branco dos dados inseridos pelo usuário
-            String username = JTextLogin.getText().trim();
+            String usuario = JTextLogin.getText().trim();
             String email = JTextEmail.getText().trim();
             String senha = JTextSenha.getText().trim(); // A senha é lida como String
 
             // Validação: verifica se o nome de usuário tem ao menos 2 caracteres
-            if (username.length() < 2) {
+            if (usuario.length() < 2) {
                 throw new Mensagem("O nome de usuário deve conter ao menos 2 caracteres.");
             }
             // Validação: verifica se o campo E-mail está vazio
@@ -166,14 +166,14 @@ public class FrmUsuario extends javax.swing.JFrame {
             UsuarioDAO cadastrarDAO = new UsuarioDAO();
 
             // Busca por um usuário com o mesmo nome de usuário para evitar duplicidade
-            Usuario usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
+            Usuario usuarioExistentePorNome = cadastrarDAO.buscarUsuario(usuario);
             if (usuarioExistentePorNome != null) {
                 throw new Mensagem("O nome de usuário informado já está sendo usado.");
             }
 
             // Cria um novo objeto Usuario com os dados informados
-            Usuario novoUsuario = new Usuario(username,senha);
-            novoUsuario.setNome(username);
+            Usuario novoUsuario = new Usuario(usuario,senha);
+            novoUsuario.setNome(usuario);
             novoUsuario.setEmail(email);
             novoUsuario.setSenha(senha); // A senha é setada como String no ModeloCadastrar
 

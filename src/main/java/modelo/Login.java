@@ -2,29 +2,29 @@ package modelo;
 
 /**
  * Representa as credenciais de um usuário para autenticação no sistema.
- * Esta classe encapsula o nome de usuário (username) e a senha,
+ * Esta classe encapsula o nome de usuário (usuario) e a senha,
  * sendo utilizada para transportar os dados de login entre as camadas
  * da aplicação
  */
 
 public class Login {
 
-    private String username;
+    private String usuario;
     private String senha;
 
     public Login() {}
 
-    public Login(String username, String senha) {
-        this.username = username;
+    public Login(String usuario, String senha) {
+        this.usuario = usuario;
         this.senha = senha;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -37,6 +37,6 @@ public class Login {
 
     @Override
     public String toString() {
-        return "ModeloLogin [username=" + username + ", senha=" + senha + "]";
+        return "ModeloLogin [usuario=" + usuario + ", senha=" + senha + "]";
     }
 }

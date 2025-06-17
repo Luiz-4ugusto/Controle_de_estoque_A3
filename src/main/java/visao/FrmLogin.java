@@ -161,18 +161,18 @@ public class FrmLogin extends javax.swing.JFrame {
     private void JButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEntrarActionPerformed
         try {
             // Obtém o texto do campo de login e remove espaços em branco extras.
-            String username = JTextLogin.getText().trim();
+            String usuario = JTextLogin.getText().trim();
             // Obtém a senha do campo de senha (JPasswordField) como String e remove espaços.
             // Converte JPasswordField.getPassword() para String para uso.
             String senha = new String(JPasswordLogin.getPassword()).trim();
 
             // Validação: verifica se o campo de usuário está vazio.
-            if (username.isEmpty()) {
+            if (usuario.isEmpty()) {
                 throw new Mensagem("Por favor, informe o nome de usuário.");
             }
 
             // Validação: verifica se o nome de usuário tem ao menos 2 caracteres.
-            if (username.length() < 2) {
+            if (usuario.length() < 2) {
                 throw new Mensagem("O nome de usuário deve conter ao menos 2 caracteres.");
             }
 
@@ -182,7 +182,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
 
             // Chama o método validarLogin do LoginDAO para verificar as credenciais no banco.
-            if (loginDAO.validarLogin(username, senha)) {
+            if (loginDAO.validarLogin(usuario, senha)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
                 this.dispose(); // Fecha a tela de login.
                 new FrmPrincipal().setVisible(true); // Abre a tela principal (FrmPrincipal).

@@ -33,7 +33,7 @@ public class Usuario {
         this.id_cadastro = id_cadastro;
     }
 
-    // Getters e Setters para nome (username)
+    // Getters e Setters para nome (usuario)
     public String getNome() {
         return nome;
     }
@@ -62,6 +62,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "ID=" + id_cadastro + ", username=" + nome + ", email=" + email + ", senha=<oculto>";
+        return "ID=" + id_cadastro + ", usuario=" + nome + ", email=" + email + ", senha=<oculto>";
     }
 }
