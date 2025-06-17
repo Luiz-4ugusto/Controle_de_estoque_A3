@@ -6,19 +6,32 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Produto;
 
 /**
- *
- * @author gusta
+ * Classe responsável por exibir o relatório de preços dos produtos em uma tabela.
+ * Essa janela permite ao usuário visualizar produtos cadastrados e seus detalhes,
+ * como preço, quantidade em estoque, unidade e categoria.
+ * 
+ * A listagem é feita com base nos dados fornecidos pela camada DAO (ProdutoDAO).
+ * 
+ * Autor: Gustavo
  */
+
 public class FrmRelatorioPreco extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmRelatorio
+     * Construtor padrão. Inicializa os componentes da interface
+     * e posiciona a janela no centro da tela.
      */
     public FrmRelatorioPreco() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Construtor alternativo. Permite receber uma JTable externa (não utilizado neste contexto).
+     *
+     * jTableProdutos Tabela de produtos que poderia ser compartilhada com outra interface.
+     */
+    
     public FrmRelatorioPreco(JTable jTableProdutos) {
         this.JTableProdutos = jTableProdutos;
     }
@@ -93,6 +106,13 @@ public class FrmRelatorioPreco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Ação executada ao clicar no botão "Sair".
+     * Fecha a janela atual.
+     *
+     * evt Evento de clique no botão.
+     */
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -100,6 +120,14 @@ public class FrmRelatorioPreco extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
     }//GEN-LAST:event_formWindowActivated
 
+    /**
+     * Ação executada ao clicar no botão "Gerar".
+     * Responsável por preencher a JTable com os dados vindos do banco de dados
+     * através do ProdutoDAO.
+     *
+     *evt Evento de clique no botão.
+     */
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
         modelo.setNumRows(0);
