@@ -75,7 +75,7 @@ RNF05. O sistema deve validar os dados inseridos pelo usuário e, caso algum val
 | ------------------------------ | ---------------------------------------------- |
 | **JDK 17**                      | Ambiente de desenvolvimento (Java 17)         |
 | **MySQL Server 8.0**            | Banco de dados relacional                     |
-| **MySQL Connector 8.3.0**| Comunicação entre Java e MySQL                |
+| **JDBC (MySQL Connector/J 8.3.0)**| Comunicação entre Java e MySQL                |
 | **Apache NetBeans 26**         | Ambiente de desenvolvimento (IDE)            |
 
 
