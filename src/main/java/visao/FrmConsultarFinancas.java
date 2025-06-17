@@ -106,7 +106,7 @@ public class FrmConsultarFinancas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        FrmRelatorioPrecos objeto = new FrmRelatorioPrecos();
+        FrmRelatorioPreco objeto = new FrmRelatorioPreco();
         objeto.setVisible(true);  
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -9,17 +9,17 @@ import modelo.Produto;
  *
  * @author gusta
  */
-public class FrmRelatorioPrecos extends javax.swing.JFrame {
+public class FrmRelatorioPreco extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmRelatorio
      */
-    public FrmRelatorioPrecos() {
+    public FrmRelatorioPreco() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    public FrmRelatorioPrecos(JTable jTableProdutos) {
+    public FrmRelatorioPreco(JTable jTableProdutos) {
         this.JTableProdutos = jTableProdutos;
     }
 
@@ -134,21 +134,23 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPrecos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioPreco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPrecos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioPreco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPrecos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioPreco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPrecos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioPreco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRelatorioPrecos().setVisible(true);
+                new FrmRelatorioPreco().setVisible(true);
             }
         });
     }
