@@ -50,8 +50,8 @@
                               <Component id="jTextQuantidade" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboCategoria" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTextNome" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="0" min="-2" pref="309" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jTextQuantidade_max" min="-2" pref="400" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="299" max="-2" attributes="0"/>
@@ -84,14 +84,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jTextNome" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="jButtonEditar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jTextQuantidade" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
