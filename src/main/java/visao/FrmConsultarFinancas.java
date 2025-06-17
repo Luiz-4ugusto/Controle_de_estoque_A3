@@ -5,13 +5,18 @@
 package visao;
 
 /**
- *
- * @author gusta
+ * Classe responsável por exibir a interface gráfica de consulta de finanças.
+ * Permite ao usuário gerar um relatório de produtos e sair da tela.
+ * 
+ * Esta janela é construída com componentes Swing.
+ * 
+ * Autor: Gustavo
  */
+
 public class FrmConsultarFinancas extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmConsultarFinancias
+     * Construtor da classe. Inicializa os componentes gráficos da tela.
      */
     public FrmConsultarFinancas() {
         initComponents();
@@ -105,15 +110,37 @@ public class FrmConsultarFinancas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      /**
+     * Ação executada ao clicar no botão "Gerar relatório dos Produtos".
+     * Abre a janela FrmRelatorioPreco.
+     *
+     *  evt Evento de clique no botão.
+     */
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         FrmRelatorioPreco objeto = new FrmRelatorioPreco();
         objeto.setVisible(true);  
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
+    /**
+     * Evento de clique com o mouse no botão "Gerar relatório dos Produtos".
+     * (Este método está vazio, mas pode ser usado para capturar cliques do mouse).
+     *
+     * evt Evento de mouse.
+     */
+    
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // gerar relatorio produtos 
     }//GEN-LAST:event_jButton2MouseClicked
 
+        /**
+     * Ação executada ao clicar no botão "Sair".
+     * Fecha a janela atual.
+     *
+     * evt Evento de clique no botão.
+     */
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
