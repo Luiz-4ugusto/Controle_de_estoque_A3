@@ -88,7 +88,7 @@ usuário e senha do bd:
 
             String user = "root";
             String password = "070600@";
-
+[Arquivo do Banco de Dados](https://github.com/Luiz-4ugusto/Controle_de_estoque_A3/tree/main/database)
 
 ## Referências
 
