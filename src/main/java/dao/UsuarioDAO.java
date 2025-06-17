@@ -43,7 +43,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> lista = new ArrayList<>();
         // Define a query SQL para selecionar todos os dados da tabela de usuários.
         // O ORDER BY id ASC garante que os resultados venham ordenados pelo ID.
-        String sql = "SELECT id, username, email, senha FROM tb_usuarios ORDER BY id ASC";
+        String sql = "SELECT id_cadastro, usuario, email, senha FROM tb_usuarios ORDER BY id_cadastro ASC";
 
         // O 'try-with-resources' garante que Connection, Statement e ResultSet sejam fechados automaticamente.
         try (Connection conn = conexaoDAO.getConexao(); // Obtém a conexão com o banco de dados.
@@ -53,13 +53,13 @@ public class UsuarioDAO {
             // Itera sobre cada linha (registro) retornada pelo ResultSet.
             while (res.next()) {
                 // Mapeia os dados de cada coluna do ResultSet para variáveis Java.
-                int id = res.getInt("id");
-                String username = res.getString("username");
+                int id = res.getInt("id_cadastro");
+                String usuario = res.getString("usuario");
                 String email = res.getString("email");
                 String senha = res.getString("senha"); // Nota: Em aplicações reais, senhas nunca devem ser lidas em texto puro.
 
                 // Cria um novo objeto Usuario com os dados recuperados do banco.
-                Usuario objeto = new Usuario(id, username, email, senha);
+                Usuario objeto = new Usuario(id, usuario, email, senha);
                 // Adiciona o objeto à lista.
                 lista.add(objeto);
             }
@@ -84,14 +84,14 @@ public class UsuarioDAO {
     public boolean inserirUsuario(Usuario usuario) {
         // Define a query SQL para inserir um novo registro.
         // O uso de '?' (placeholders) é uma prática segura para evitar SQL Injection.
-        String sql = "INSERT INTO tb_usuarios (username, email, senha) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO tb_usuarios (usuario, email, senha) VALUES (?, ?, ?)";
 
         // O 'try-with-resources' garante que Connection e PreparedStatement sejam fechados automaticamente.
         try (Connection con = conexaoDAO.getConexao(); // Obtém a conexão com o banco de dados.
                  PreparedStatement pst = con.prepareStatement(sql)) { // Prepara a instrução SQL.
 
             // Define os valores para os placeholders da query.
-            pst.setString(1, usuario.getNome());  // Define o valor para o primeiro '?' (username).
+            pst.setString(1, usuario.getNome());  // Define o valor para o primeiro '?' (usuario).
             pst.setString(2, usuario.getEmail()); // Define o valor para o segundo '?' (email).
             pst.setString(3, usuario.getSenha()); // Define o valor para o terceiro '?' (senha).
 
@@ -110,35 +110,35 @@ public class UsuarioDAO {
     }
 
     /**
-     * Busca um usuário no banco de dados usando o nome de usuário (username).
+     * Busca um usuário no banco de dados usando o nome de usuário (usuario).
      *
-     * @param username O nome de usuário a ser procurado no banco de dados.
+     * @param usuarioBusca O nome de usuário a ser procurado no banco de dados.
      * @return Um objeto {@code Usuario} se um usuário com o nome de
      * usuário especificado for encontrado. Retorna {@code null} se nenhum
      * usuário for encontrado ou em caso de erro.
      */
-    public Usuario buscarUsuario(String username) {
-        // Define a query SQL para buscar um usuário pelo username.
-        String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE username = ?";
+    public Usuario buscarUsuario(String usuarioBusca) {
+        // Define a query SQL para buscar um usuário pelo usuario.
+        String sql = "SELECT id_cadastro, usuario, email, senha FROM tb_usuarios WHERE usuario = ?";
         Usuario usuario = null; // Inicializa o objeto usuário como nulo.
 
         // O 'try-with-resources' garante que Connection, PreparedStatement e ResultSet sejam fechados.
         try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
 
-            pst.setString(1, username); // Define o username para o placeholder.
+            pst.setString(1, usuarioBusca); // Define o usuario para o placeholder.
             try (ResultSet rs = pst.executeQuery()) { // Executa a query e obtém o resultado.
-                if (rs.next()) { // Se encontrou um registro (username é geralmente único).
+                if (rs.next()) { // Se encontrou um registro (usuario é geralmente único).
                     // Mapeia os dados do ResultSet para um objeto Usuario.
-                    int id = rs.getInt("id");
-                    String foundUsername = rs.getString("username");
+                    int id = rs.getInt("id_cadastro");
+                    String foundUsuario = rs.getString("usuario");
                     String email = rs.getString("email");
                     String senha = rs.getString("senha");
-                    usuario = new Usuario(id, foundUsername, email, senha);
+                    usuario = new Usuario(id, foundUsuario, email, senha);
                 }
             }
         } catch (SQLException e) {
             // Em caso de erro SQL, imprime uma mensagem de erro e o stack trace.
-            System.err.println("Erro ao buscar usuário por username: " + e.getMessage());
+            System.err.println("Erro ao buscar usuário por usuario: " + e.getMessage());
             e.printStackTrace();
         }
         // Retorna o usuário encontrado ou null.
@@ -148,28 +148,28 @@ public class UsuarioDAO {
     /**
      * Busca um usuário no banco de dados usando o endereço de e-mail.
      *
-     * @param email O endereço de e-mail a ser procurado no banco de dados.
+     * @param emailBusca O endereço de e-mail a ser procurado no banco de dados.
      * @return Um objeto {@code Usuario} se um usuário com o e-mail
      * especificado for encontrado. Retorna {@code null} se nenhum usuário for
      * encontrado ou em caso de erro.
      */
-    public Usuario buscarEmail(String email) {
+    public Usuario buscarEmail(String emailBusca) {
         // Define a query SQL para buscar um usuário pelo email.
-        String sql = "SELECT id, username, email, senha FROM tb_usuarios WHERE email = ?";
+        String sql = "SELECT id_cadastro, usuario, email, senha FROM tb_usuarios WHERE email = ?";
         Usuario usuario = null; // Inicializa o objeto usuário como nulo.
 
         // O 'try-with-resources' garante que Connection, PreparedStatement e ResultSet sejam fechados.
         try (Connection con = conexaoDAO.getConexao(); PreparedStatement pst = con.prepareStatement(sql)) {
 
-            pst.setString(1, email); // Define o email para o placeholder.
+            pst.setString(1, emailBusca); // Define o email para o placeholder.
             try (ResultSet rs = pst.executeQuery()) { // Executa a query e obtém o resultado.
                 if (rs.next()) { // Se encontrou um registro (email deve ser único).
                     // Mapeia os dados do ResultSet para um objeto Usuario.
-                    int id = rs.getInt("id");
-                    String username = rs.getString("username");
+                    int id = rs.getInt("id_cadastro");
+                    String usuarioNome = rs.getString("usuario");
                     String foundEmail = rs.getString("email");
                     String senha = rs.getString("senha");
-                    usuario = new Usuario(id, username, foundEmail, senha);
+                    usuario = new Usuario(id, usuarioNome, foundEmail, senha);
                 }
             }
         } catch (SQLException e) {
@@ -182,30 +182,30 @@ public class UsuarioDAO {
     }
 
     /**
-     * Retorna uma lista contendo apenas os nomes de usuário (usernames) de
+     * Retorna uma lista contendo apenas os nomes de usuário (usuario) de
      * todos os usuários cadastrados no banco de dados.
      *
      * @return Uma {@code ArrayList} de {@code String} contendo todos os nomes
-     * de usuário. Retorna uma lista vazia se nenhum username for encontrado ou
+     * de usuário. Retorna uma lista vazia se nenhum usuario for encontrado ou
      * em caso de erro.
      */
-    public ArrayList<String> getAllUsernames() {
-        // Define a query SQL para selecionar apenas a coluna 'username'.
-        String sql = "SELECT username FROM tb_usuarios";
-        ArrayList<String> usernames = new ArrayList<>(); // Inicializa uma lista para os usernames.
+    public ArrayList<String> getAllusuarios() {
+        // Define a query SQL para selecionar apenas a coluna 'usuario'.
+        String sql = "SELECT usuario FROM tb_usuarios";
+        ArrayList<String> usuarios = new ArrayList<>(); // Inicializa uma lista para os usuarios.
 
         // O 'try-with-resources' garante que Connection, Statement e ResultSet sejam fechados.
         try (Connection con = conexaoDAO.getConexao(); Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) { // Itera sobre cada resultado.
-                usernames.add(rs.getString("username")); // Adiciona o username à lista.
+                usuarios.add(rs.getString("usuario")); // Adiciona o usuario à lista.
             }
         } catch (SQLException e) {
             // Em caso de erro SQL, imprime uma mensagem de erro e o stack trace.
-            System.err.println("Erro ao obter todos os usernames: " + e.getMessage());
+            System.err.println("Erro ao obter todos os usuarios: " + e.getMessage());
             e.printStackTrace();
         }
-        // Retorna a lista de usernames.
-        return usernames;
+        // Retorna a lista de usuarios.
+        return usuarios;
     }
 }
