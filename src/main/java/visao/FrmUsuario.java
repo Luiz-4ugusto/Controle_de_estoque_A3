@@ -152,15 +152,15 @@ public class FrmUsuario extends javax.swing.JFrame {
 
             // Validação: verifica se o nome de usuário tem ao menos 2 caracteres
             if (username.length() < 2) {
-                throw new MensagemLogin("O nome de usuário deve conter ao menos 2 caracteres.");
+                throw new Mensagem("O nome de usuário deve conter ao menos 2 caracteres.");
             }
             // Validação: verifica se o campo E-mail está vazio
             if (email.isEmpty()) {
-                throw new MensagemLogin("O campo E-mail não pode estar vazio.");
+                throw new Mensagem("O campo E-mail não pode estar vazio.");
             }
             // Validação: verifica se o campo Senha está vazio
             if (senha.isEmpty()) {
-                throw new MensagemLogin("A senha não pode estar vazia.");
+                throw new Mensagem("A senha não pode estar vazia.");
             }
 
             UsuarioDAO cadastrarDAO = new UsuarioDAO();
@@ -168,7 +168,7 @@ public class FrmUsuario extends javax.swing.JFrame {
             // Busca por um usuário com o mesmo nome de usuário para evitar duplicidade
             Usuario usuarioExistentePorNome = cadastrarDAO.buscarUsername(username);
             if (usuarioExistentePorNome != null) {
-                throw new MensagemLogin("O nome de usuário informado já está sendo usado.");
+                throw new Mensagem("O nome de usuário informado já está sendo usado.");
             }
 
             // Cria um novo objeto Usuario com os dados informados
@@ -186,10 +186,10 @@ public class FrmUsuario extends javax.swing.JFrame {
                 JTextSenha.setText("");
             } else {
                 // Mensagem para o caso de o e-mail já estar em uso (lógica do DAO)
-                throw new MensagemLogin("O e-mail informado já está sendo usado.");
+                throw new Mensagem("O e-mail informado já está sendo usado.");
             }
 
-        } catch (MensagemLogin erro) {
+        } catch (Mensagem erro) {
             // Captura e exibe mensagens de erro específicas da validação de login
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (Exception e) {
