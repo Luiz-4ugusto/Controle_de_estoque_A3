@@ -1,7 +1,7 @@
 package visao;
 
 // Importa a classe DAO para acessar os dados dos produtos no banco de dados.
-import dao.CadastrarProdutoDao;
+import dao.ProdutoDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -153,7 +153,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
      * Carrega os dados dos produtos com estoque abaixo ou igual ao mínimo permitido
      * na tabela JTableRelatorioEstoqueMinimo.
      * 1. Limpa as linhas existentes na tabela.
-     * 2. Cria uma instância de CadastrarProdutoDao para acessar os dados.
+     * 2. Cria uma instância de ProdutoDao para acessar os dados.
      * 3. Executa a consulta para obter produtos com estoque irregular (mínimo).
      * 4. Adiciona cada produto encontrado como uma nova linha na tabela.
      * 5. Trata possíveis erros de SQL durante o carregamento dos dados.
@@ -162,7 +162,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
         // Obtém o modelo da tabela para manipular seus dados.
         DefaultTableModel modelo = (DefaultTableModel) JTableRelatorioEstoqueMinimo.getModel();
         modelo.setNumRows(0); // Limpa todas as linhas existentes na tabela.
-        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        ProdutoDao dao = new ProdutoDao();
 
         try {
             // Chama o método do DAO para obter o ResultSet com os produtos.
@@ -187,7 +187,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
      * Carrega os dados dos produtos com estoque acima ou igual ao máximo permitido
      * na tabela JTableRelatorioEstoqueMaximo.
      * 1. Limpa as linhas existentes na tabela.
-     * 2. Cria uma instância de CadastrarProdutoDao para acessar os dados.
+     * 2. Cria uma instância de ProdutoDao para acessar os dados.
      * 3. Executa a consulta para obter produtos com estoque irregular (máximo).
      * 4. Adiciona cada produto encontrado como uma nova linha na tabela.
      * 5. Trata possíveis erros de SQL durante o carregamento dos dados.
@@ -196,7 +196,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
         // Obtém o modelo da tabela para manipular seus dados.
         DefaultTableModel modelo = (DefaultTableModel) JTableRelatorioEstoqueMaximo.getModel();
         modelo.setNumRows(0);
-        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        ProdutoDao dao = new ProdutoDao();
 
         try {
             // Chama o método do DAO para obter o ResultSet com os produtos.

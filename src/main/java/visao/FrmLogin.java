@@ -202,7 +202,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void JButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCadastrarActionPerformed
         this.dispose(); // Fecha a tela de login.
-        new FrmCadastrarUsuario().setVisible(true); // Abre a tela de Cadastro de Usuários.
+        new FrmUsuario().setVisible(true); // Abre a tela de Cadastro de Usuários.
     }//GEN-LAST:event_JButtonCadastrarActionPerformed
 
     private void JPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPasswordLoginActionPerformed
