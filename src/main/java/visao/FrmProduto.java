@@ -7,8 +7,8 @@
  */
 package visao;
 
-import dao.CategoriaDao;
-import dao.ProdutoDao;
+import dao.CategoriaDAO;
+import dao.ProdutoDAO;
 import modelo.Produto;
 import modelo.Categoria;
 import javax.swing.JOptionPane;
@@ -37,7 +37,7 @@ public class FrmProduto extends javax.swing.JFrame {
      */
     private void carregarCategoriasNoCombo() {
         jComboCategoria.removeAllItems();
-        CategoriaDao dao = new CategoriaDao();
+        CategoriaDAO dao = new CategoriaDAO();
         for (Categoria cat : dao.getLista()) {
             String categoriaFormatada = cat.getNome() + " - " + cat.getEmbalagem() + " - " + cat.getTamanho();
             jComboCategoria.addItem(categoriaFormatada);
@@ -52,7 +52,7 @@ public class FrmProduto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
         modelo.setNumRows(0);
 
-        ProdutoDao dao = new ProdutoDao();
+        ProdutoDAO dao = new ProdutoDAO();
         for (Produto produto : dao.getListaProdutos()) {
             String categoriaFormatada = produto.getCategoria().getNome()
                     + " - " + produto.getCategoria().getEmbalagem()
@@ -325,7 +325,7 @@ public class FrmProduto extends javax.swing.JFrame {
                     throw new Mensagem("ID deve ser maior que zero.");
 
                 }
-                ArrayList<Produto> produtos = new ProdutoDao().getListaProdutos();
+                ArrayList<Produto> produtos = new ProdutoDAO().getListaProdutos();
                 for (Produto produto : produtos) {
                     if (produto.getId() == id) {
                         throw new Mensagem("ID " + id + " já cadastrado");
@@ -381,7 +381,7 @@ public class FrmProduto extends javax.swing.JFrame {
                 throw new Mensagem("Formato de categoria inválido");
             }
 
-            CategoriaDao categoriaDao = new CategoriaDao();
+            CategoriaDAO categoriaDao = new CategoriaDAO();
             Categoria categoriaSelecionada = null;
             for (Categoria cat : categoriaDao.getLista()) {
                 if (cat.getNome().equals(partes[0].trim())
@@ -408,7 +408,7 @@ public class FrmProduto extends javax.swing.JFrame {
             if (categoriaSelecionada == null) {
                 throw new Mensagem("Categoria não encontrada!");
             }
-            ProdutoDao produtoDao = new ProdutoDao();
+            ProdutoDAO produtoDao = new ProdutoDAO();
             if (produtoDao.inserirProduto(this.objetoProduto)) {
                 jTextId.setText("");
                 jTextNome.setText("");
@@ -483,7 +483,7 @@ public class FrmProduto extends javax.swing.JFrame {
             }
 
             Categoria categoriaSelecionada = null;
-            CategoriaDao categoriaDao = new CategoriaDao();
+            CategoriaDAO categoriaDao = new CategoriaDAO();
             for (Categoria cat : categoriaDao.getLista()) {
                 if (cat.getNome().equals(partes[0].trim())
                         && cat.getEmbalagem().equals(partes[1].trim())
@@ -500,7 +500,7 @@ public class FrmProduto extends javax.swing.JFrame {
 
             Produto produtoAtualizado = new Produto(id, nome, preco, quantidade, min, max, unidade, categoriaSelecionada);
 
-            ProdutoDao produtoDao = new ProdutoDao();
+            ProdutoDAO produtoDao = new ProdutoDAO();
             if (produtoDao.atualizarProduto(produtoAtualizado)) {
                 jTextId.setText("");
                 jTextNome.setText("");
@@ -573,7 +573,7 @@ public class FrmProduto extends javax.swing.JFrame {
             );
 
             if (respostaUsuario == JOptionPane.YES_OPTION) {
-                ProdutoDao produtoDao = new ProdutoDao();
+                ProdutoDAO produtoDao = new ProdutoDAO();
                 if (produtoDao.removerProduto(id)) {
                     // Limpa os campos após remoção
 
@@ -593,7 +593,7 @@ public class FrmProduto extends javax.swing.JFrame {
                 }
             }
 
-            ProdutoDao produtoDao = new ProdutoDao();
+            ProdutoDAO produtoDao = new ProdutoDAO();
             System.out.println(produtoDao.getListaProdutos().toString());
 
         } catch (Mensagem erro) {

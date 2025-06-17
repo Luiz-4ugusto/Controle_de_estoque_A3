@@ -1,6 +1,6 @@
 package visao;
 
-import dao.ProdutoDao;
+import dao.ProdutoDAO;
 import javax.swing.table.DefaultTableModel;
 import modelo.Produto;
 
@@ -33,7 +33,7 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setNumRows(0);
 
-        ProdutoDao dao = new ProdutoDao();
+        ProdutoDAO dao = new ProdutoDAO();
         for (Produto produto : dao.getListaProdutos()) {
             String categoriaFormatada = produto.getCategoria().getNome()
                     + " - " + produto.getCategoria().getEmbalagem()
@@ -197,7 +197,7 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
 
             jTable1.setValueAt(String.valueOf(novoEstoque), linhaSelecionada, 2);
 
-            ProdutoDao dao = new ProdutoDao();
+            ProdutoDAO dao = new ProdutoDAO();
             Produto produto = dao.getListaProdutos().get(linhaSelecionada);
             produto.setQuantidade(novoEstoque);
 
