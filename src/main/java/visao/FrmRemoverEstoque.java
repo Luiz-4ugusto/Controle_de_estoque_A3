@@ -9,12 +9,30 @@ import modelo.Produto;
  *
  * @author Arthur
  */
-public class FrmRemoverEstoque extends javax.swing.JFrame {
+
+/**
+ * Formulário para remover quantidade do estoque de um produto existente.
+ * Esta classe representa a interface gráfica (JFrame) que permite ao usuário
+ * visualizar os produtos cadastrados em uma tabela, selecionar um produto e
+ * remover uma quantidade do seu estoque atual, atualizando a informação
+ * no banco de dados.
+ *
+ * - Listar os produtos e suas quantidades em estoque.
+ * - Permitir seleção de um produto.
+ * - Remover uma quantidade informada.
+ * - Atualizar os dados persistidos no banco de dados via DAO.
+ *
+ */
+
 
     /**
      * Creates new form FrmRemoverEstoque
      */
-    public FrmRemoverEstoque() {
+
+    /**
+     * Creates new form FrmRemoverEstoque
+     */
+
         initComponents();
     }
 
@@ -25,7 +43,12 @@ public class FrmRemoverEstoque extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
 
-    public void carregaTabela() {
+
+    /**
+     * Carrega a tabela com todos os produtos cadastrados.
+     * Busca os dados por meio do ProdutoDAO e popula a tabela gráfica.
+     */
+
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setNumRows(0);
 
