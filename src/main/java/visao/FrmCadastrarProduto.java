@@ -7,10 +7,10 @@
  */
 package visao;
 
-import dao.CategoriaDao;
-import dao.ProdutoDao;
-import modelo.Produto;
-import modelo.Categoria;
+import dao.CadastrarCategoriaDao;
+import dao.CadastrarProdutoDao;
+import modelo.CadastrarProduto;
+import modelo.CadastrarCategoria;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class FrmCadastrarProduto extends javax.swing.JFrame {
     // Objeto de modelo utilizado para manipular o produto atual
 
-    private Produto objetoCadastrarProduto;
+    private CadastrarProduto objetoCadastrarProduto;
 
     /**
      * Construtor da interface de cadastro de produtos. Inicializa os
@@ -37,8 +37,8 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
      */
     private void carregarCategoriasNoCombo() {
         jComboCategoria.removeAllItems();
-        CategoriaDao dao = new CategoriaDao();
-        for (Categoria cat : dao.getLista()) {
+        CadastrarCategoriaDao dao = new CadastrarCategoriaDao();
+        for (CadastrarCategoria cat : dao.getLista()) {
             String categoriaFormatada = cat.getNome() + " - " + cat.getEmbalagem() + " - " + cat.getTamanho();
             jComboCategoria.addItem(categoriaFormatada);
         }
@@ -52,8 +52,8 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
         modelo.setNumRows(0);
 
-        ProdutoDao dao = new ProdutoDao();
-        for (Produto produto : dao.getListaProdutos()) {
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        for (CadastrarProduto produto : dao.getListaProdutos()) {
             String categoriaFormatada = produto.getCategoria().getNome()
                     + " - " + produto.getCategoria().getEmbalagem()
                     + " - " + produto.getCategoria().getTamanho();
@@ -325,8 +325,8 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
                     throw new Mensagem("ID deve ser maior que zero.");
 
                 }
-                ArrayList<Produto> produtos = new ProdutoDao().getListaProdutos();
-                for (Produto produto : produtos) {
+                ArrayList<CadastrarProduto> produtos = new CadastrarProdutoDao().getListaProdutos();
+                for (CadastrarProduto produto : produtos) {
                     if (produto.getId() == id) {
                         throw new Mensagem("ID " + id + " já cadastrado");
                     }
@@ -381,9 +381,9 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
                 throw new Mensagem("Formato de categoria inválido");
             }
 
-            CategoriaDao categoriaDao = new CategoriaDao();
-            Categoria categoriaSelecionada = null;
-            for (Categoria cat : categoriaDao.getLista()) {
+            CadastrarCategoriaDao categoriaDao = new CadastrarCategoriaDao();
+            CadastrarCategoria categoriaSelecionada = null;
+            for (CadastrarCategoria cat : categoriaDao.getLista()) {
                 if (cat.getNome().equals(partes[0].trim())
                         && cat.getEmbalagem().equals(partes[1].trim())
                         && cat.getTamanho().equals(partes[2].trim())) {
@@ -396,7 +396,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
                 throw new Mensagem("Categoria não encontrada!");
             }
 
-            this.objetoCadastrarProduto = new Produto();
+            this.objetoCadastrarProduto = new CadastrarProduto();
             this.objetoCadastrarProduto.setId(id);
             this.objetoCadastrarProduto.setNome(nome);
             this.objetoCadastrarProduto.setPreco(preco);
@@ -408,7 +408,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
             if (categoriaSelecionada == null) {
                 throw new Mensagem("Categoria não encontrada!");
             }
-            ProdutoDao produtoDao = new ProdutoDao();
+            CadastrarProdutoDao produtoDao = new CadastrarProdutoDao();
             if (produtoDao.inserirProduto(this.objetoCadastrarProduto)) {
                 jTextId.setText("");
                 jTextNome.setText("");
@@ -482,9 +482,9 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
                 throw new Mensagem("Formato de categoria inválido");
             }
 
-            Categoria categoriaSelecionada = null;
-            CategoriaDao categoriaDao = new CategoriaDao();
-            for (Categoria cat : categoriaDao.getLista()) {
+            CadastrarCategoria categoriaSelecionada = null;
+            CadastrarCategoriaDao categoriaDao = new CadastrarCategoriaDao();
+            for (CadastrarCategoria cat : categoriaDao.getLista()) {
                 if (cat.getNome().equals(partes[0].trim())
                         && cat.getEmbalagem().equals(partes[1].trim())
                         && cat.getTamanho().equals(partes[2].trim())) {
@@ -498,9 +498,9 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
             }
             //atualizar e limpar os campos
 
-            Produto produtoAtualizado = new Produto(id, nome, preco, quantidade, min, max, unidade, categoriaSelecionada);
+            CadastrarProduto produtoAtualizado = new CadastrarProduto(id, nome, preco, quantidade, min, max, unidade, categoriaSelecionada);
 
-            ProdutoDao produtoDao = new ProdutoDao();
+            CadastrarProdutoDao produtoDao = new CadastrarProdutoDao();
             if (produtoDao.atualizarProduto(produtoAtualizado)) {
                 jTextId.setText("");
                 jTextNome.setText("");
@@ -573,7 +573,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
             );
 
             if (respostaUsuario == JOptionPane.YES_OPTION) {
-                ProdutoDao produtoDao = new ProdutoDao();
+                CadastrarProdutoDao produtoDao = new CadastrarProdutoDao();
                 if (produtoDao.removerProduto(id)) {
                     // Limpa os campos após remoção
 
@@ -593,7 +593,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
                 }
             }
 
-            ProdutoDao produtoDao = new ProdutoDao();
+            CadastrarProdutoDao produtoDao = new CadastrarProdutoDao();
             System.out.println(produtoDao.getListaProdutos().toString());
 
         } catch (Mensagem erro) {

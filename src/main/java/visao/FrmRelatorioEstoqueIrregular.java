@@ -1,7 +1,7 @@
 package visao;
 
 // Importa a classe DAO para acessar os dados dos produtos no banco de dados.
-import dao.ProdutoDao;
+import dao.CadastrarProdutoDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -162,7 +162,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
         // Obtém o modelo da tabela para manipular seus dados.
         DefaultTableModel modelo = (DefaultTableModel) JTableRelatorioEstoqueMinimo.getModel();
         modelo.setNumRows(0); // Limpa todas as linhas existentes na tabela.
-        ProdutoDao dao = new ProdutoDao();
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
 
         try {
             // Chama o método do DAO para obter o ResultSet com os produtos.
@@ -196,7 +196,7 @@ public class FrmRelatorioEstoqueIrregular extends javax.swing.JFrame {
         // Obtém o modelo da tabela para manipular seus dados.
         DefaultTableModel modelo = (DefaultTableModel) JTableRelatorioEstoqueMaximo.getModel();
         modelo.setNumRows(0);
-        ProdutoDao dao = new ProdutoDao();
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
 
         try {
             // Chama o método do DAO para obter o ResultSet com os produtos.

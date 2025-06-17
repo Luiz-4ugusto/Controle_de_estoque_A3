@@ -1,8 +1,8 @@
 package visao;
 
-import dao.ProdutoDao;
+import dao.CadastrarProdutoDao;
 import javax.swing.table.DefaultTableModel;
-import modelo.Produto;
+import modelo.CadastrarProduto;
 
 /**
  * Formulário para adicionar quantidade ao estoque de um produto existente.
@@ -13,7 +13,7 @@ import modelo.Produto;
  */
 public class FrmAdicionarEstoque extends javax.swing.JFrame {
 
-    Produto cadprod = new Produto();
+    CadastrarProduto cadprod = new CadastrarProduto();
 
     /**
      * Creates new form FrmAdicionarEstoque
@@ -33,8 +33,8 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setNumRows(0);
 
-        ProdutoDao dao = new ProdutoDao();
-        for (Produto produto : dao.getListaProdutos()) {
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        for (CadastrarProduto produto : dao.getListaProdutos()) {
             String categoriaFormatada = produto.getCategoria().getNome()
                     + " - " + produto.getCategoria().getEmbalagem()
                     + " - " + produto.getCategoria().getTamanho();
@@ -197,8 +197,8 @@ public class FrmAdicionarEstoque extends javax.swing.JFrame {
 
             jTable1.setValueAt(String.valueOf(novoEstoque), linhaSelecionada, 2);
 
-            ProdutoDao dao = new ProdutoDao();
-            Produto produto = dao.getListaProdutos().get(linhaSelecionada);
+            CadastrarProdutoDao dao = new CadastrarProdutoDao();
+            CadastrarProduto produto = dao.getListaProdutos().get(linhaSelecionada);
             produto.setQuantidade(novoEstoque);
 
             dao.atualizarProduto(produto);

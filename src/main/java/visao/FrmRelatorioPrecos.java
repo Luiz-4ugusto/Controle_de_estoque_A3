@@ -1,9 +1,9 @@
 package visao;
 
-import dao.ProdutoDao;
+import dao.CadastrarProdutoDao;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Produto;
+import modelo.CadastrarProduto;
 
 /**
  *
@@ -104,8 +104,8 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
         modelo.setNumRows(0);
 
-        ProdutoDao dao = new ProdutoDao();
-        for (Produto produto : dao.getListaProdutos()) {
+        CadastrarProdutoDao dao = new CadastrarProdutoDao();
+        for (CadastrarProduto produto : dao.getListaProdutos()) {
             modelo.addRow(new Object[]{
                 produto.getNome(),
                 produto.getPreco(),

@@ -168,17 +168,17 @@ public class FrmLogin extends javax.swing.JFrame {
 
             // Validação: verifica se o campo de usuário está vazio.
             if (username.isEmpty()) {
-                throw new Mensagem("Por favor, informe o nome de usuário.");
+                throw new MensagemLogin("Por favor, informe o nome de usuário.");
             }
 
             // Validação: verifica se o nome de usuário tem ao menos 2 caracteres.
             if (username.length() < 2) {
-                throw new Mensagem("O nome de usuário deve conter ao menos 2 caracteres.");
+                throw new MensagemLogin("O nome de usuário deve conter ao menos 2 caracteres.");
             }
 
             // Validação: verifica se o campo de senha está vazio.
             if (senha.isEmpty()) {
-                throw new Mensagem("Por favor, informe a senha.");
+                throw new MensagemLogin("Por favor, informe a senha.");
             }
 
             // Chama o método validarLogin do LoginDAO para verificar as credenciais no banco.
@@ -188,10 +188,10 @@ public class FrmLogin extends javax.swing.JFrame {
                 new FrmPrincipal().setVisible(true); // Abre a tela principal (FrmPrincipal).
             } else {
                 // Se o login falhar, lança uma exceção com a mensagem de erro.
-                throw new Mensagem("Usuário ou senha incorretos.");
+                throw new MensagemLogin("Usuário ou senha incorretos.");
             }
-        } catch (Mensagem erro) {
-            // Captura e exibe mensagens de erro personalizadas (Mensagem).
+        } catch (MensagemLogin erro) {
+            // Captura e exibe mensagens de erro personalizadas (MensagemLogin).
             JOptionPane.showMessageDialog(null, erro.getMessage());
         }
     }//GEN-LAST:event_JButtonEntrarActionPerformed
