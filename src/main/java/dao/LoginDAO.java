@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.LoginUsuario; // Importa a classe modelo LoginUsuario
+import modelo.Usuario; // Importa a classe modelo LoginUsuario
 
 public class LoginDAO {
 
@@ -53,10 +53,10 @@ public class LoginDAO {
      * @return Um objeto LoginUsuario (username e senha) se encontrado, ou null
      * caso contrário.
      */
-    public LoginUsuario buscarUsername(String username) {
+    public Usuario buscarUsername(String username) {
         // Altera a query para selecionar apenas os campos que LoginUsuario pode armazenar
         String sql = "SELECT username, senha FROM tb_usuarios WHERE username = ?";
-        LoginUsuario usuario = null;
+        Usuario usuario = null;
 
         try (Connection conn = conexaoDAO.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -65,7 +65,7 @@ public class LoginDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     // Instancia LoginUsuario com username e senha
-                    usuario = new LoginUsuario(rs.getString("username"), rs.getString("senha"));
+                    usuario = new Usuario(rs.getString("username"), rs.getString("senha"));
                 }
             }
         } catch (SQLException e) {

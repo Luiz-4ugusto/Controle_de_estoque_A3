@@ -2,7 +2,6 @@ package visao;
 
 import dao.UsuarioDAO; // Importa a classe DAO responsável pela lógica de autenticação.
 import javax.swing.JOptionPane;
-
 import modelo.Usuario;
 
 /**
@@ -173,7 +172,7 @@ public class FrmUsuario extends javax.swing.JFrame {
             }
 
             // Cria um novo objeto Usuario com os dados informados
-            Usuario novoUsuario = new Usuario();
+            Usuario novoUsuario = new Usuario(username,senha);
             novoUsuario.setNome(username);
             novoUsuario.setEmail(email);
             novoUsuario.setSenha(senha); // A senha é setada como String no ModeloCadastrar
