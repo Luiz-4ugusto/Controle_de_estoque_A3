@@ -12,8 +12,8 @@ import modelo.Usuario;
 public class FrmUsuario extends javax.swing.JFrame {
 
     /**
-     * Construtor padrão da classe FrmUsuario. Inicializa os
-     * componentes da interface gráfica e centraliza a janela na tela.
+     * Construtor padrão da classe FrmUsuario. Inicializa os componentes da
+     * interface gráfica e centraliza a janela na tela.
      */
     public FrmUsuario() {
         initComponents();
@@ -148,45 +148,45 @@ public class FrmUsuario extends javax.swing.JFrame {
             // Obtém e remove espaços em branco dos dados inseridos pelo usuário
             String usuario = JTextLogin.getText().trim();
             String email = JTextEmail.getText().trim();
-            String senha = JTextSenha.getText().trim(); // A senha é lida como String
+            String senha = JTextSenha.getText().trim();
 
-            // Validação: verifica se o nome de usuário tem ao menos 2 caracteres
             if (usuario.length() < 2) {
                 throw new Mensagem("O nome de usuário deve conter ao menos 2 caracteres.");
             }
-            // Validação: verifica se o campo E-mail está vazio
-            if (email.isEmpty()) {
-                throw new Mensagem("O campo E-mail não pode estar vazio.");
+            if (email.length() < 2) {
+                throw new Mensagem("O e-mail deve conter ao menos 2 caracteres..");
             }
-            // Validação: verifica se o campo Senha está vazio
+            if (email.isEmpty()) {
+                throw new Mensagem("O e-mail não pode estar vazio.");
+            }
             if (senha.isEmpty()) {
                 throw new Mensagem("A senha não pode estar vazia.");
             }
-
-            UsuarioDAO cadastrarDAO = new UsuarioDAO();
-
-            // Busca por um usuário com o mesmo nome de usuário para evitar duplicidade
-            Usuario usuarioExistentePorNome = cadastrarDAO.buscarUsuario(usuario);
-            if (usuarioExistentePorNome != null) {
-                throw new Mensagem("O nome de usuário informado já está sendo usado.");
+            if (senha.length() < 5) {
+                throw new Mensagem("A senha deve conter ao menos 5 caracteres.");
             }
 
-            // Cria um novo objeto Usuario com os dados informados
-            Usuario novoUsuario = new Usuario(usuario,senha);
-            novoUsuario.setNome(usuario);
-            novoUsuario.setEmail(email);
-            novoUsuario.setSenha(senha); // A senha é setada como String no ModeloCadastrar
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-            // Tenta inserir o novo usuário no banco de dados
-            if (cadastrarDAO.inserirUsuario(novoUsuario)) {
-                // Exibe mensagem de sucesso e limpa os campos
+            Usuario usuarioExistentePorNome = usuarioDAO.buscarUsuario(usuario);
+            if (usuarioExistentePorNome != null) {
+                throw new Mensagem("O nome de usuário '" + usuario + "' já está em uso.");
+            }
+
+            Usuario emailExistente = usuarioDAO.buscarEmail(email);
+            if (emailExistente != null) {
+                throw new Mensagem("O e-mail '" + email + "' já está cadastrado.");
+            }
+
+            Usuario novoUsuario = new Usuario(usuario, email, senha);
+
+            if (usuarioDAO.inserirUsuario(novoUsuario)) {
                 JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
                 JTextLogin.setText("");
                 JTextEmail.setText("");
                 JTextSenha.setText("");
             } else {
-                // Mensagem para o caso de o e-mail já estar em uso (lógica do DAO)
-                throw new Mensagem("O e-mail informado já está sendo usado.");
+                JOptionPane.showMessageDialog(null, "O nome de usuário ou email já existem.");
             }
 
         } catch (Mensagem erro) {
@@ -212,8 +212,8 @@ public class FrmUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_JTextEmailActionPerformed
 
     /**
-     * Método principal para iniciar a aplicação. É o ponto de entrada da tela de
-     * cadastro de usuários.
+     * Método principal para iniciar a aplicação. É o ponto de entrada da tela
+     * de cadastro de usuários.
      */
     public static void main(String args[]) {
 
